@@ -1,55 +1,114 @@
-{% load static %}
-
 {% extends "myapp/homepage.html" %}
+{% load static %}
 
 {% block title %}{{ detail.name }}{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/hobby.css' %}"> 
+{% endblock %}
+
 {% block content %}
 
-<h2>Hobbies</h2>
-<h4>Your own space for development</h4>
-<hr>
+<!-- HERO -->
+<header class="hobby-hero">
+  <div class="hero-overlay">
+    <h1 class="hero-title">{{ detail.name }}</h1>
+    <p class="hero-subtitle">Your space for development</p>
+  </div>
+</header>
 
-<nav>
+<main class="hobby-bg">
+
+  <!-- ICONS BAR -->
+  <section class="hobby-icons-bar">
+
+    <!-- Add hobby button -->
+    <button class="circle-btn plus-btn" title="Add hobby">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+
     {% for hobby in hobbies %}
-        <a href="{% url 'hobby_detail' hobby.detail.id %}">{{ hobby.detail.name }}</a>
+      <button class="circle-btn {% if hobby.detail.id == detail.id %}active{% endif %}"
+              title="{{ hobby.detail.name }}"
+              onclick="window.location.href='{% url 'hobby_detail' hobby.detail.id %}'">
+        <i class="{{ hobby.detail.icon }}"></i>
+      </button>
     {% endfor %}
-</nav>
 
-<hr>
+    <button class="circle-btn plus-btn" title="Add hobby">
+      <i class="bi bi-plus-lg"></i>
+    </button>
 
-<h2>{{ detail.name }}</h2>
-<h4>
-    {% with total=challenges.count completed=progress_map|length %}
-        {% if total > 0 %}
-            <h4>Hobby progress: {{ completed }}/{{ total }} ({{ completed|divisibleby:total }})</h4>
-        {% else %}
-            <h4>Hobby progress: 0/0 (0%)</h4>
-        {% endif %}
-    {% endwith %}
-</h4>
+  </section>
 
-<hr>
+  <!-- MAIN HOBBY CARD -->
+  <section class="hobby-card">
 
-{% for challenge in challenges %}
-    <div style="margin-bottom: 20px;">
-        <h3>{{ challenge.title }}</h3>
-        <p>{{ challenge.description }} | Prize: {{ challenge.xp_reward }} XP</p>
+    <div class="hobby-head">
+      <h2>{{ detail.name }}</h2>
 
-        {% if challenge.user_state == "not_started" %}
-            <a href="{% url 'challenge_done' challenge.id %}">Done</a>
-
-        {% elif challenge.user_state == "done" %}
-            <p style="color: orange;">Marked as done</p>
-            <a href="{% url 'challenge_collect' challenge.id %}">Collect XP</a>
-
-        {% elif challenge.user_state == "completed" %}
-            <p style="color: green;">Completed ✔</p>
-        {% endif %}
+      {% with total=challenges.count completed=progress_map|length %}
+        <p>Hobby progress: <b>
+          {% if total > 0 %}
+            {{ completed|floatformat:0 }}/{{ total }} ({{ completed|divisibleby:total }}%)
+          {% else %}
+            0%
+          {% endif %}
+        </b></p>
+      {% endwith %}
     </div>
-    <hr>
-{% empty %}
-    <p>No challenges yet for this hobby.</p>
-{% endfor %}
+
+    <div class="tasks-list">
+
+      {% for challenge in challenges %}
+      <article class="task-item {% if challenge.user_state == 'completed' %}disabled{% endif %}">
+
+        <div class="task-left">
+          <div class="task-icon">
+            <i class="bi bi-circle-half"></i>
+          </div>
+
+          <div class="task-text">
+            <h3>{{ challenge.title }}</h3>
+            <p>{{ challenge.description }}</p>
+
+            <div class="task-progress">
+              <div class="task-bar">
+                <div class="task-fill"
+                     style="width:
+                       {% if challenge.user_state == 'completed' %}100%
+                       {% elif challenge.user_state == 'done' %}100%
+                       {% else %}0%
+                       {% endif %}
+                     ">
+                </div>
+              </div>
+
+              {% if challenge.user_state == "not_started" %}
+                <a href="{% url 'challenge_done' challenge.id %}" class="mini-btn">Done</a>
+
+              {% elif challenge.user_state == "done" %}
+                <a href="{% url 'challenge_collect' challenge.id %}" class="mini-btn">Collect prize</a>
+
+              {% elif challenge.user_state == "completed" %}
+                <button class="mini-btn" disabled>Completed</button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="task-right">
+          <span class="prize-label">Prize:</span>
+          <span class="prize-xp">+ {{ challenge.xp_reward }} xp</span>
+        </div>
+
+      </article>
+      {% endfor %}
+
+    </div>
+
+  </section>
+
+</main>
 
 {% endblock %}
