@@ -45,18 +45,10 @@
   <section class="hobby-card">
 
     <div class="hobby-head">
-      <h2>{{ detail.name }}</h2>
-
-      {% with total=challenges.count completed=progress_map|length %}
-        <p>Hobby progress: <b>
-          {% if total > 0 %}
-            {{ completed|floatformat:0 }}/{{ total }} ({{ completed|divisibleby:total }}%)
-          {% else %}
-            0%
-          {% endif %}
-        </b></p>
-      {% endwith %}
+        <h2>{{ detail.name }}</h2>
+        <p>Hobby progress: <b>{{ completed }}/{{ total }} ({{ percent }}%)</b></p>
     </div>
+
 
     <div class="tasks-list">
 
@@ -99,7 +91,7 @@
 
         <div class="task-right">
           <span class="prize-label">Prize:</span>
-          <span class="prize-xp">+ {{ challenge.xp_reward }} xp</span>
+          <span class="prize-xp">+ {{ challenge.xp_reward }} XP</span>
         </div>
 
       </article>

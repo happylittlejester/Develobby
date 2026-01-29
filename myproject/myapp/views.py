@@ -250,10 +250,17 @@ def hobby_detail(request, detail_id):
         else:
             ch.user_state = "done"
 
+    total = challenges.count() 
+    completed = len([c for c in challenges if c.user_state == "completed"]) 
+    percent = int((completed / total) * 100) if total > 0 else 0
+
     return render(request, "myapp/hobby_detail.html", {
         "detail": detail,
         "challenges": challenges,
         "hobbies": request.user.hobbies.all(),
+        "completed": completed, 
+        "total": total, 
+        "percent": percent,
     })
 
 
