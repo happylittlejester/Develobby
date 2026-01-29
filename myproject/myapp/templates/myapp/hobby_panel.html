@@ -1,0 +1,69 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block title %}Hobby Panel – Develobby{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/hobby_panel.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<header class="hero">
+    <h1>Hobby panel</h1>
+    <p>This is where your journey begins</p>
+</header>
+
+<section class="welcome-card">
+    <div class="welcome-text">
+        <p>
+            Are you just getting started with Develobby? Or maybe you want to broaden
+            your horizons and take on new challenges? Here you will find hobbies that
+            will help you grow!
+        </p>
+        <p class="link-section">
+            You can find your hobbies <a href="#">here</a>.
+        </p>
+    </div>
+
+    <div class="welcome-image">
+        <img src="{% static 'img/hobby_panel.png' %}" alt="Hobby work">
+    </div>
+</section>
+
+<section class="hobbies-section">
+    <h1>Hobbies</h1>
+    <p class="hobbies-subtitle">
+        Choose up to 3 hobbies or remove unnecessary ones.
+    </p>
+
+    <div class="grid-container">
+
+        {% for hobby in hobbies %}
+        <div class="hobby-card">
+            <div class="icon-circle">
+                <img src="{% static 'img/default_hobby.png' %}" class="hobby-icon">
+            </div>
+
+            <h3>{{ hobby.name }}</h3>
+            <p>{{ hobby.description }}</p>
+
+            <div class="hobby-actions">
+                <a class="btn-action" href="{% url 'add_hobby_choice' hobby.id %}">+</a>
+                <a class="btn-action" href="{% url 'remove_hobby_choice' hobby.id %}">−</a>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="hobby-card coming-soon">
+            <h3>Stay tuned — more hobbies are on the way!</h3>
+            <p>
+                Join our Discord to keep up with the latest updates and never miss what's
+                coming next!
+            </p>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

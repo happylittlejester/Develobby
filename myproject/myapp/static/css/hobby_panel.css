@@ -1,0 +1,151 @@
+/* ===== OGÓLNE ===== */
+body {
+  background-color: #302371;
+  color: white;
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/hobby_panel_main.png");
+  background-size: cover;
+  background-position: center;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin: 0;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  opacity: 0.85;
+}
+
+/* ===== WELCOME CARD ===== */
+.welcome-card {
+  background-color: #704ABC;
+  margin: 40px auto 60px;
+  padding: 40px 50px;
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 95%;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+  text-align: left;
+}
+
+.welcome-text {
+  flex: 2;
+  padding-right: 30px;
+}
+
+.welcome-text p {
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.welcome-text a {
+  color: #DFC39A;
+}
+
+.welcome-image img {
+  max-width: 350px;
+}
+
+/* ===== HOBBIES ===== */
+.hobbies-section {
+  padding: 20px;
+}
+
+.hobbies-subtitle {
+  color: rgba(255,255,255,0.6);
+  font-size: 1.1rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
+.hobby-card {
+  background: linear-gradient(145deg, #4a38a3, #302371);
+  padding: 40px 25px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hobby-card h3 {
+  font-size: 1.5rem;
+}
+
+.hobby-card p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* ===== IKONY ===== */
+.icon-circle {
+  width: 70px;
+  height: 70px;
+  background: #704ABC;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 4px solid #302371;
+}
+
+.hobby-icon {
+  width: 40px;
+}
+
+/* ===== BUTTONS ===== */
+.btn-action {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #DFC39A;
+  color: #704ABC;
+  font-size: 26px;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* ===== COMING SOON ===== */
+.coming-soon {
+  background: #4a38a3;
+  border: 2px dashed rgba(255,255,255,0.2);
+  opacity: 0.9;
+  justify-content: center;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 850px) {
+  .welcome-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero {
+    height: 300px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+}

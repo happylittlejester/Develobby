@@ -1,0 +1,97 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block title %}Develobby – Your personal growth assistant{% endblock %}
+
+{% block content %}
+
+<header class="hero-header">
+  <img src="{% static 'img/Group_18.png' %}" class="hero-logo">
+
+  <section class="hero-section">
+    <div class="hero-content">
+
+      <div class="hero-card">
+        <p class="hero-subtitle">Welcome to</p>
+        <h1 class="hero-title">Develobby</h1>
+      </div>
+
+      {% if not request.user.is_authenticated %}
+      <div class="hero-buttons">
+        <a href="{% url 'login' %}" class="hero-btn">Sign In</a>
+        <a href="{% url 'register' %}" class="hero-btn">Sign Up</a>
+      </div>
+      {% endif %}
+
+    </div>
+  </section>
+</header>
+
+<section class="about" id="about">
+  <div>
+    <h2>Your personal growth assistant</h2>
+    <p>Maybe you feel like you've come to a standstill? Perhaps social media and hours of scrolling have distracted you from your passions? Or maybe you just find it hard to find the time and motivation in this age of constant rush? Develobby is the solution to each of these difficulties.</p>
+    <p>Wherever you are, whatever you need, Develobby will meet all your needs. Don't wait, rediscover your potential now!</p>
+  </div>
+  <img src="{% static 'img/1.1.Growth_assistant.png' %}">
+</section>
+
+<footer class="footer-develobby">
+  <div class="faq-wrapper">
+    <p class="footer-text"><b>Join our Discord and never miss new updates!</b></p>
+    <button class="faq-btn">Join now</button>
+  </div>
+</footer>
+
+<section class="team" id="team">
+  <img src="{% static 'img/1.2.Team.png' %}">
+  <div>
+    <h2>Meet our team!</h2>
+    <p>Develobby was created out of passion to respond to the needs of today's digital world. We are not a corporation, but only a small team wanting to bring real, positive change to people's lives.</p>
+    <p>Our team consists of two talented backend developers, a tester who makes us laugh until we cry, and a graphic designer who also looks after the team.</p>
+    <p>We are students who are sensitive to current issues, which is why we decided to take action and thus Develobby was created.</p>
+  </div>
+</section>
+
+<footer class="footer-develobby">
+  <div class="faq-wrapper">
+    <p class="footer-text"><b>Have questions? Check our FAQ page!</b></p>
+    <a href="{% url 'faq' %}" class="faq-btn">FAQ</a>
+  </div>
+</footer>
+
+<section class="contact-section" id="contact">
+  <div class="contact-left">
+    <h2>Contact</h2>
+    <p>You can find and contact us here!</P>
+
+    <div class="contact-items">
+      <div class="contact-item">
+        <i class="bi bi-envelope-fill"></i>
+        <span>develobby.support@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <i class="bi bi-instagram"></i>
+        <span>@develobby_app</span>
+      </div>
+      <div class="contact-item">
+        <i class="bi bi-discord"></i>
+        <span>Develobby</span>
+      </div>
+      <div class="contact-item">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span>Żołnierska 53, Szczecin</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-right">
+    <img src="{% static 'img/1.3.Contact.png' %}">
+  </div>
+</section>
+
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
+
+{% endblock %}

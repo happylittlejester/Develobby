@@ -1,0 +1,266 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block title %}Upgrade{% endblock %}
+
+{% block extra_css %} 
+<link rel="stylesheet" href="{% static 'css/upgrade.css' %}">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+{% endblock %}
+
+{% block content %}
+
+<div class="position-relative banner">
+  <img src="{% static 'img/upgrade.png' %}" class="img-fluid w-100 banner-img">
+
+  <div class="position-absolute top-50 start-50 translate-middle text-white text-center banner-content">
+    <p class="lexend-regular" id="coming_soon">Coming soon!</p>
+    <p class="lexend-regular" id="banner_subtitle">Unleash your true potential with</p>
+    <h1 class="lexend-bold" id="banner_title">Develobby Premium</h1>
+
+    <div class="d-flex flex-column gap-3 align-items-center mt-4">
+        <a href="{% url 'upgrade' %}#description" class="btn rounded-pill all-btn box-btn btn-gold">
+            Learn more
+        </a>
+        <a href="{% url 'upgrade' %}#premium_plans" class="btn rounded-pill all-btn box-btn btn-gradient">
+            Get started
+        </a>
+    </div>
+  </div>
+</div>
+
+<!--Box ze zdjęciem i opisem premium-->
+<div class="container my-5" id="description">
+    <div class="custom-box d-flex align-items-center justify-content-center ">
+        <div class="box-text">
+            <h2 class="lexend-bold" id="par_title">What's in premium?</h2>
+            <div class="lexend-regular">
+                <p>Unlock your full potential with the Premium package. You'll gain access to develop even more passions, without limits – exactly as you want. You'll create an extensive, unique avatar and personalize your profile on a whole new level. <br><br>
+                    For each completed challenge, you will receive exclusive rewards that will allow you to stand out and show your path of development. You will also receive Premium tips – specific, effective strategies that will accelerate your progress and help you overcome everyday distractions.<br><br></p>
+                    <p class="inline-p">It's more than a subscription. It's an </p> 
+                    <p class="lexend-bold inline-p"> investment in yourself. </p>
+                    <p>Join Premium and grow faster, more consciously, and with real satisfaction.</p>
+            </div>
+        </div>
+
+        <div class="box-image">
+            <img src="{% static 'img/upgrade_2.png' %}" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+<!--Boxy z funkcjonalnościami premium-->
+<div class="container my-5">
+     <div class="row justify-content-center text-center g-4 d-flex align-items-stretch">
+         <div class="col-12 col-md-4 d-flex">
+            <div class="feature-box flex-fill">
+                <div class="icon-circle gold">
+                    <i class="fi fi-rs-rocket-lunch"></i>
+                </div>
+                <h4 class="box_title lexend-bold">More possibilities</h4>
+                <p class="lexend-regular">
+                    With Develobby Premium, you gain additional 
+                    access to hobbies, which means you can 
+                    develop all your passions at the same time, 
+                    without restrictions. You no longer have to 
+                    worry about limiting the number of hobbies to 
+                    three – with Develobby Premium, you can 
+                    develop whatever you want, whenever you 
+                    want!
+                </p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 d-flex">
+            <div class="feature-box flex-fill">
+                <div class="icon-circle purple">
+                    <i class="fi fi-rs-sparkles"></i>
+                </div>
+                <h4 class="box_title lexend-bold">New features</h4>
+                <p class="lexend-regular">
+                    The premium package provides exclusive rewards that enable you to develop your profile in any direction you choose. As a subscriber, you will also gain access to proven tips and strategies for overcoming distractions, lack of motivation, and other challenges you may encounter.
+                </p>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 d-flex">
+                <div class="feature-box flex-fill">
+                    <div class="icon-circle blue">
+                        <i class="fi fi-rs-settings-sliders"></i>
+                    </div>
+                    <h4 class="box_title lexend-bold">Customization</h4>
+                    <p class="lexend-regular">
+                        With a premium subscription, you can fully personalize your profile to reflect your style. Customize your profile picture and overall appearance, making your profile truly yours. Express yourself and stand out with unique touches that showcase your personality.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Plany premium (subskrypcje)-->
+<div class="container my-5" id="premium_plans">
+    <div class="narrow-row mx-auto">
+
+        <div class="joined-box box-1">
+            <h2 class="lexend-bold plan-title">Basic</h2>
+            <p class="lexend-regular">Enjoy all the essential features for free and get started with your profile right away. Ideal for anyone beginning their journey on the platform.</p>
+            <h2 class="lexend-bold">Free</h2>
+
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Develop up to 3 hobbies at the same time</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Track your progress</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Access challenges that support your development</p>
+            </div>
+
+            <a href="{% url 'coming_soon' %}" class="btn rounded-pill all-btn box-btn btn-gold">
+                Choose plan
+            </a>
+
+        </div>
+
+
+        <div class="joined-box box-1">
+            <h2 class="lexend-bold plan-title">Student</h2>
+            <p>Designed for ambitious students eager to expand their horizons. Gain access to tools and resources that help you learn, grow and stay motivated.</p>
+            <div class="price-container">
+                <h2 class="lexend-bold inline-p" id="student-price"> {{ student_price }} {{ currency_symbol }} </h2> 
+                <span class="inline-p lexend-regular">/month</span>
+            </div>
+
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Develop up to 5 hobbies at the same time</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Track your progress</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Access challenges that support your development</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Access to weekly articles with valuable tips</p>
+            </div>
+            <a href="{% url 'coming_soon' %}" class="btn rounded-pill all-btn box-btn btn-gradient">
+                Choose plan
+            </a>
+        </div>
+
+        <div class="joined-box box-2">
+            <h2 class="lexend-bold plan-title">Premium</h2>
+            <p class="lexend-regular">Unlock exclusive features and expert tips for rapid, effective profile development. Achieve your goals faster and customize your experience like never before.</p>
+            <div class="price-container"><h2 class="lexend-bold inline-p" id="premium-price"> {{ premium_price }} {{ currency_symbol }}</h2> <span class="inline-p lexend-regular">/month</span></div>
+
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Develop any number of hobbies</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Track your progress</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Access challenges that support your development</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Access to weekly articles with valuable tips</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Personalize your profile</p>
+            </div>
+            <div class="icon-text">
+                <i class="fi fi-sr-badge-check check"></i>
+                <p class="inline-p lexend-regular">Get effective strategies for fighting distractions</p>
+            </div>
+            <a href="{% url 'coming_soon' %}" class="btn rounded-pill all-btn box-btn btn-gradient">
+                Choose plan
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Sekcja z currency pod boxami -->
+<div class="currency-container">
+    <span class="currency-label">Change currency:</span>
+    <div class="currency-dropdown">
+        <button class="all-btn btn-gold dropdown-btn">{{ currency }} ▼</button>
+        <ul class="dropdown-list">
+            <li data-value="USD">USD</li>
+            <li data-value="EUR">EUR</li>
+            <li data-value="PLN">PLN</li>
+            <li data-value="GBP">GBP</li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    const dropdown = document.querySelector('.currency-dropdown');
+    const btn = dropdown.querySelector('.dropdown-btn');
+    const items = dropdown.querySelectorAll('.dropdown-list li');
+
+    // otwieranie dropdownu
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+    });
+
+    // wybór waluty
+    items.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const value = item.dataset.value;
+
+            // pobranie nowych cen AJAX-em
+            fetch(`/upgrade?currency=${value}`, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+            .then(res => res.json())
+            .then(data => {
+                // podmiana cen w HTML
+                document.querySelector("#student-price").textContent =
+                    data.student_price + " " + data.currency_symbol;
+
+                document.querySelector("#premium-price").textContent =
+                    data.premium_price + " " + data.currency_symbol;
+
+                // zmiana tekstu na przycisku
+                btn.textContent = data.currency + " ▼";
+
+                // zamknięcie dropdownu
+                dropdown.classList.remove('show');
+            });
+        });
+    });
+
+    // zamykanie po kliknięciu poza dropdown
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+            dropdown.classList.remove('show');
+        }
+    });
+</script>
+
+<br><br><br><br><br><br><br>
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
+
+
+{% endblock %}

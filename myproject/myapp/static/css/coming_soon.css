@@ -1,0 +1,78 @@
+.fi {
+    font-size: 35px;
+    color: black;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 90px);
+}
+
+.page-content {
+    flex: 1;
+    width: 100%;
+    background-position: center top;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.coming-soon-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background: linear-gradient( #402F96, #20184B);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.coming-title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.coming-description {
+    font-size: 18px;
+    font-weight: 300;
+    color: #E0DFDE;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+.go-profile-btn {
+    display: inline-flex;
+    justify-content: center; 
+    align-items: center;
+    width: 190px;
+    height: 40px;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #000;
+    background: #DFC39A;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-bottom: 40px;
+    text-decoration: none;
+}
+
+.go-profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.main-footer {
+    color: #DFC39A;
+    background-color: #302371;
+    text-align: left;
+    padding: 10px 30px;
+    margin-top: auto;
+}

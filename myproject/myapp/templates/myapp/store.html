@@ -1,0 +1,49 @@
+{% load static %}
+
+{% extends "myapp/homepage.html" %}
+
+{% block title %}Store{% endblock %}
+
+{% block content %}
+<h2>Store</h2>
+<h4>Boost your development with irreplacable help</h4>
+<hr>
+
+<form method="get">
+    <label for="currency">Change currency:</label>
+    <select name="currency" id="currency" onchange="this.form.submit()">
+        {% for curr in rates %}
+            <option value="{{ curr }}" {% if currency == curr %}selected{% endif %}>
+                {{ curr }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <label for="category">Category:</label>
+    <select name="category" id="category" onchange="this.form.submit()">
+        <option value="">All</option>
+        {% for cat in categories %}
+            <option value="{{ cat.id }}" {% if selected_category == cat.id %}selected{% endif %}>
+                {{ cat.name }}
+            </option>
+        {% endfor %}
+    </select>
+</form>
+
+<hr>
+
+{% if products %}
+    {% for product in products %}
+        <div style="margin: 20px 0;">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.description }}</p>
+            <p><strong>{{ product.price }} {{ currency }}</strong></p>
+            <a href="{% url 'store_coming_soon' %}" class="btn btn-primary">Buy Now</a>
+        </div>
+        <hr>
+    {% endfor %}
+{% else %}
+    <p>No products available yet.</p>
+{% endif %}
+
+{% endblock %}

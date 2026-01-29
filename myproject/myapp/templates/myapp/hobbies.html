@@ -1,0 +1,20 @@
+{% load static %}
+
+{% extends "myapp/homepage.html" %}
+
+{% block title %}My Hobbies{% endblock %}
+
+{% block content %}
+<h2>My Hobbies</h2>
+<h4>Your own space for development</h4>
+<hr>
+
+<nav>
+    {% for hobby in hobbies %}
+        <a href="{% url 'hobby_detail' hobby.detail.id %}">{{ hobby.detail.name }}</a>
+    {% empty %}
+        <span style="color: gray;">You have no hobbies yet. Add them in Hobby Panel.</span>
+    {% endfor %}
+</nav>
+
+{% endblock %}

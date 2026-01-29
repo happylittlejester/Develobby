@@ -1,0 +1,59 @@
+{% load static %}
+
+{% extends "myapp/homepage.html" %}
+
+{% block title %}Profil{% endblock %}
+
+{% block content %}
+<h1>Witaj, {{ request.user.username }}!</h1>
+
+<hr>
+
+<p><strong>Plan:</strong>
+    {% if user.userstats.subscription %}
+        {{ user.userstats.subscription.name }}
+    {% else %}
+        Free
+    {% endif %}
+</p>
+
+<hr>
+{% if current_level %}
+    <h3>
+    Level: {{ level_number }} {{ current_level.title }} ({{ current_xp }} XP)</h3>
+    <div style="border: 1px solid #ccc; width: 300px; height: 25px; border-radius: 5px; background-color: #eee;">
+        <div style="width: {{ progress_percent }}%; height: 100%; background-color: #4caf50; border-radius: 5px;"></div>
+    </div>
+    <p>{{ progress_percent }}% do następnego poziomu ({{ next_level.title }})</p>
+{% else %}
+    <p>Nie przypisano poziomu.</p>
+{% endif %}
+<hr>
+
+<h3>Twoje hobby:</h3>
+<ul>
+    {% for hobby in hobbies %}
+        <li>{{ hobby.detail.name }}</li>
+    {% empty %}
+        <li>Nie wybrałeś jeszcze hobby.</li>
+    {% endfor %}
+</ul>
+
+<p><a href="{% url 'hobby_panel' %}" class="btn btn-primary">Wybierz hobby</a></p>
+
+<h1>------------------</h1>
+
+<p>Chcesz podzielić się postępami z przyjaciółmi? Dołącz do naszego serwera Discord! (przycisk)</p>
+
+<h1>------------------</h1>
+
+<h1>Twoje tytuły</h1>
+
+<h1>------------------</h1>
+
+<h1>Chcesz więcej funkcji?</h1>
+<p>Dostosuj swój profil i rozwijaj się szybciej dzięki Develobby Premium.</p>
+<p>Jedno kliknięcie dzieli Cię od nowych możliwości <a href="{% url 'upgrade' %}" class="btn">Upgrade</a></p>
+
+<p><a href="{% url 'logout' %}">Wyloguj się</a></p>
+{% endblock %}

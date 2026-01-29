@@ -1,0 +1,72 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block title %}FAQ{% endblock %}
+
+{% block extra_css %} 
+<link rel="stylesheet" href="{% static 'css/faq.css' %}"> 
+{% endblock %}
+
+{% block content %}
+
+<section class="faq-section">
+    <div class="faq-container">
+        <h1 class="lexend-bold" id="FAQ_title"> FAQ</h1>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How can Develobby help you?
+            </div>
+        <div class="faq-answer">
+                It helps you develop your passions and personal skills by giving you access to courses, tutorials, and educational materials across many fields.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is Develobby free?
+            </div>
+            <div class="faq-answer">
+                Yes, the Basic version is completely free and includes all essential features.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How to upgrade your account to premium?
+            </div>
+            <div class="faq-answer">
+                You can upgrade anytime through your account settings by choosing a subscription plan that suits you.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                What does upgrade to premium give you?
+            </div>
+            <div class="faq-answer">
+                Upgrading unlocks exclusive features, personalized tools, and premium tips designed to support faster and more effective growth.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                Who is Develobby for?
+            </div>
+            <div class="faq-answer">
+                It’s for anyone who wants to learn new skills, explore their passions, and use their time more consciously and productively.
+            </div>
+        </div>
+
+        <h1 class="lexend-bold" id="questions"> Got more questions?</h1>
+        <p class="lexend-regular" id="questions-text">Feel free to reach out to us directly! You can find all our contact details and social media 
+            <a href="{% url 'homepage' %}#contact">here</a>.</p>
+
+    </div>
+</section>
+
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+{% endblock %}

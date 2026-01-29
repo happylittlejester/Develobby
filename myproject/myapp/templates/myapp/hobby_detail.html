@@ -1,0 +1,55 @@
+{% load static %}
+
+{% extends "myapp/homepage.html" %}
+
+{% block title %}{{ detail.name }}{% endblock %}
+
+{% block content %}
+
+<h2>Hobbies</h2>
+<h4>Your own space for development</h4>
+<hr>
+
+<nav>
+    {% for hobby in hobbies %}
+        <a href="{% url 'hobby_detail' hobby.detail.id %}">{{ hobby.detail.name }}</a>
+    {% endfor %}
+</nav>
+
+<hr>
+
+<h2>{{ detail.name }}</h2>
+<h4>
+    {% with total=challenges.count completed=progress_map|length %}
+        {% if total > 0 %}
+            <h4>Hobby progress: {{ completed }}/{{ total }} ({{ completed|divisibleby:total }})</h4>
+        {% else %}
+            <h4>Hobby progress: 0/0 (0%)</h4>
+        {% endif %}
+    {% endwith %}
+</h4>
+
+<hr>
+
+{% for challenge in challenges %}
+    <div style="margin-bottom: 20px;">
+        <h3>{{ challenge.title }}</h3>
+        <p>{{ challenge.description }} | Prize: {{ challenge.xp_reward }} XP</p>
+
+        {% if challenge.user_state == "not_started" %}
+            <a href="{% url 'challenge_done' challenge.id %}">Done</a>
+
+        {% elif challenge.user_state == "done" %}
+            <p style="color: orange;">Marked as done</p>
+            <a href="{% url 'challenge_collect' challenge.id %}">Collect XP</a>
+
+        {% elif challenge.user_state == "completed" %}
+            <p style="color: green;">Completed ✔</p>
+        {% endif %}
+    </div>
+    <hr>
+{% empty %}
+    <p>No challenges yet for this hobby.</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Develobby – Sign Up</title>
+
+  <!-- Bootstrap -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- Bootstrap Icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    rel="stylesheet"
+  />
+
+  <!-- REGISTER CSS (OSOBNY PLIK) -->
+  <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-develobby">
+  <div class="container-fluid">
+
+    <div class="d-flex align-items-center">
+      <i
+        class="bi bi-house-fill nav-icon"
+        onclick="window.location.href='{% url 'homepage' %}'"
+      ></i>
+    </div>
+
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="auth-bg">
+  <div class="auth-card">
+
+    <h1 class="auth-title">Create an account</h1>
+
+    <p class="auth-subtitle">
+      Already have an account?
+      <a href="{% url 'login' %}">Sign in</a>
+    </p>
+
+    <!-- DJANGO FORM -->
+    <form method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <input
+          class="auth-input"
+          type="{{ field.field.widget.input_type }}"
+          name="{{ field.name }}"
+          placeholder="{{ field.label }}"
+          value="{{ field.value|default:'' }}"
+          required
+        />
+        {% if field.errors %}
+          <div class="form-error">
+            {{ field.errors|striptags }}
+          </div>
+        {% endif %}
+      {% endfor %}
+
+      <button class="auth-btn" type="submit">
+        Sign Up
+      </button>
+    </form>
+
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

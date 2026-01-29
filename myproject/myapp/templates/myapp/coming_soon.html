@@ -1,0 +1,31 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block title %}Upgrade{% endblock %}
+
+{% block extra_css %} 
+<link rel="stylesheet" href="{% static 'css/coming_soon.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="page-wrapper">
+    <div class="page-content">
+        <div class="coming-soon-card">
+
+            <h1 class="coming-title">Coming soon!</h1>
+
+            <p class="coming-description">
+                 Purchase options will be added shortly to help you accelerate your growth even more and access all valuable resources in one convenient place. Stay tuned — exciting improvements are on the way!
+            </p>
+
+            <a href="{% url 'profile' %}" class="buy-btn go-profile-btn">Go to profile</a>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        © 2025 Develobby. All rights reserved.
+    </footer>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+/* navbar.css */
+
+/* NAVBAR STYL */
+.navbar-develobby {
+  background-color: #302371;
+  padding: 15px 20px;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;   /*  KLUCZOWE */
+  gap: 32px;
+}
+
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.nav-link:hover {
+  color: #c9d1ff !important;
+  text-decoration: none;
+}
+
+/* ikonki i przyciski po prawej */
+.nav-icon {
+  color: #ffffff;
+  font-size: 22px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.sign-in-btn {
+  border: 1px solid #ffffff;
+  background: transparent;
+  color: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.sign-in-btn:hover {
+  background: #ffffff;
+  color: #000;
+}
