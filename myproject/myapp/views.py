@@ -101,8 +101,21 @@ def upgrade(request):
     final_prices = {}
     for name, usd_price in base_prices.items():
         pln_value = usd_price * usd_to_pln
-        final = pln_value if currency == "PLN" else pln_value / Decimal(str(rates[currency]))
+
+        if currency == "PLN":
+            final = pln_value
+        else:
+            final = pln_value / Decimal(str(rates[currency]))
+
         final_prices[name] = round(final, 2)
+
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest": 
+        return JsonResponse({ 
+            "currency": currency, 
+            "currency_symbol": currency_symbols[currency], 
+            "student_price": final_prices["student"], 
+            "premium_price": final_prices["premium"], 
+        })
 
     return render(request, "myapp/upgrade.html", {
         "currency": currency,
