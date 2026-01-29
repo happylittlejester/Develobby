@@ -1,49 +1,203 @@
+{% extends "myapp/base.html" %}
 {% load static %}
-
-{% extends "myapp/homepage.html" %}
 
 {% block title %}Store{% endblock %}
 
+{% block extra_css %} 
+<link rel="stylesheet" href="{% static 'css/store.css' %}">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css'>
+{% endblock %}
+
 {% block content %}
-<h2>Store</h2>
-<h4>Boost your development with irreplacable help</h4>
-<hr>
 
-<form method="get">
-    <label for="currency">Change currency:</label>
-    <select name="currency" id="currency" onchange="this.form.submit()">
-        {% for curr in rates %}
-            <option value="{{ curr }}" {% if currency == curr %}selected{% endif %}>
-                {{ curr }}
-            </option>
-        {% endfor %}
-    </select>
-
-    <label for="category">Category:</label>
-    <select name="category" id="category" onchange="this.form.submit()">
-        <option value="">All</option>
-        {% for cat in categories %}
-            <option value="{{ cat.id }}" {% if selected_category == cat.id %}selected{% endif %}>
-                {{ cat.name }}
-            </option>
-        {% endfor %}
-    </select>
-</form>
-
-<hr>
-
-{% if products %}
-    {% for product in products %}
-        <div style="margin: 20px 0;">
-            <h3>{{ product.name }}</h3>
-            <p>{{ product.description }}</p>
-            <p><strong>{{ product.price }} {{ currency }}</strong></p>
-            <a href="{% url 'store_coming_soon' %}" class="btn btn-primary">Buy Now</a>
+<!--Baner z napisami-->
+<div class="store-background">
+    <div class="hero-image">
+        <img src="{% static 'img/store.png' %}" alt="Store banner">
+        <div class="hero-text">
+            <h1 class="lexend-bold" id="banner_title">Store</h1>
+            <p class="lexend-regular" id="banner_subtitle">
+                Boost your development with irreplaceable help
+            </p>
         </div>
-        <hr>
+    </div>
+</div>
+
+<div class="filters-container">
+
+    <!-- CATEGORY -->
+    <div class="filter-box" id="category-dd">
+        <span class="filter-label">Category:</span>
+        <button class="filter-btn dropdown-btn">All ▼</button>
+        <ul class="dropdown-list">
+            <li data-category="All">All</li>
+            <li data-category="Drawing">Drawing</li>
+            <li data-category="Cooking">Cooking</li>
+            <li data-category="Music">Music</li>
+            <li data-category="Coding">Coding</li>
+            <li data-category="Fitness">Fitness</li>
+        </ul>
+    </div>
+
+    <!-- CURRENCY -->
+    <div class="filter-box" id="currency-dd">
+        <span class="filter-label">Currency:</span>
+        <button class="filter-btn dropdown-btn">{{ currency }} ▼</button>
+        <ul class="dropdown-list">
+            <li data-value="USD">USD</li>
+            <li data-value="EUR">EUR</li>
+            <li data-value="PLN">PLN</li>
+            <li data-value="GBP">GBP</li>
+        </ul>
+    </div>
+
+</div>
+
+<div class="products-container">
+{% for product in products %}
+    <div class="product-card">
+
+        <div class="product-left">
+            <div class="product-icon">
+                <i class="{{ product.icon }}"></i>
+            </div>
+
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <p>Category: <span>{{ product.category }}</span></p>
+            </div>
+        </div>
+
+        <div class="product-right">
+            <div class="product-price">{{ product.price }} {{ currency_symbol }}</div>
+            <a href="{% url 'coming_soon' %}" class="buy-btn">Buy now</a>
+        </div>
+
+    </div>
     {% endfor %}
-{% else %}
-    <p>No products available yet.</p>
-{% endif %}
+</div>
+
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
+
+
+<script>
+    // GLOBALNE ZMIENNE – zapamiętują aktualne wybory
+    let currentCurrency = "{{ currency }}";
+    let currentCategory = "All";
+
+    // WALUTY
+    const curDropdown = document.querySelector('#currency-dd');
+    const curBtn = curDropdown.querySelector('.dropdown-btn');
+    const curItems = curDropdown.querySelectorAll('.dropdown-list li');
+
+    curBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        curDropdown.classList.toggle('show');
+    });
+
+    curItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const value = item.dataset.value;
+
+            fetch(`/store?currency=${value}&category=${currentCategory}`, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+            .then(res => res.json())
+            .then(data => {
+
+                curBtn.textContent = data.currency + " ▼";
+                currentCurrency = value; // zapamiętujemy walutę
+
+                document.querySelectorAll(".product-price").forEach((el, i) => {
+                    el.textContent = data.products[i].price + " " + data.currency_symbol;
+                });
+
+                curDropdown.classList.remove('show');
+            });
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!curDropdown.contains(e.target)) {
+            curDropdown.classList.remove('show');
+        }
+    });
+</script>
+
+
+
+<script>
+    // KATEGORIE
+    const catDropdown = document.querySelector('#category-dd');
+    const catBtn = catDropdown.querySelector('.dropdown-btn');
+    const catItems = catDropdown.querySelectorAll('.dropdown-list li');
+
+    catBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        catDropdown.classList.toggle('show');
+    });
+
+    catItems.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const category = item.dataset.category;
+
+            fetch(`/store?category=${category}&currency=${currentCurrency}`, {
+                headers: { "X-Requested-With": "XMLHttpRequest" }
+            })
+            .then(res => res.json())
+            .then(data => {
+
+                catBtn.textContent = category + " ▼";
+                currentCategory = category; // zapamiętujemy kategorię
+
+                const container = document.querySelector(".products-container");
+                container.innerHTML = "";
+
+                data.products.forEach(p => {
+                    container.innerHTML += `
+                        <div class="product-card">
+                            <div class="product-left">
+                                <div class="product-icon">
+                                    <i class="${p.icon}"></i>
+                                </div>
+                                <div class="product-info">
+                                    <h3>${p.name}</h3>
+                                    <p>${p.description}</p>
+                                    <p>Category: <span>${p.category}</span></p>
+                                </div>
+                            </div>
+                            <div class="product-right">
+                                <div class="product-price">${p.price} ${data.currency_symbol}</div>
+                                <a href="/coming_soon" class="buy-btn">Buy now</a>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                catDropdown.classList.remove('show');
+            });
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!catDropdown.contains(e.target)) {
+            catDropdown.classList.remove('show');
+        }
+    });
+</script>
 
 {% endblock %}

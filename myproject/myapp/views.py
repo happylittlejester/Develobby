@@ -130,9 +130,65 @@ def upgrade(request):
 # =========================
 @login_required
 def store(request):
+    currency = request.GET.get("currency", "USD")
+    products = Product.objects.all()
+
+    # Ikony
+    ICON_MAP = {
+        "Coding": "fi fi-brands-python",
+        "Drawing": "fi fi-sr-artist",
+        "Music": "fi fi-sr-list-music",
+        "Cooking": "fi fi-rs-recipe-book",
+        "Fitness": "fi fi-sr-person-lunge",
+    }
+
+    rates = get_exchange_rates()
+
+    currency_symbols = {
+        "USD": "$",
+        "EUR": "€",
+        "GBP": "£",
+        "PLN": "zł",
+    }
+
+    usd_to_pln = Decimal(str(rates["USD"]))
+
+    selected_category = request.GET.get("category")
+
+    if selected_category and selected_category != "All":
+        products = products.filter(category__name=selected_category)
+
+    converted_products = []
+
+    for p in products:
+        usd_price = Decimal(str(p.price))
+        pln_value = usd_price * usd_to_pln
+
+        if currency == "PLN":
+            final = pln_value
+        else:
+            final = pln_value / Decimal(str(rates[currency]))
+
+        converted_products.append({
+            "name": p.name,
+            "description": p.description,
+            "price": round(final, 2),
+            "category": p.category.name if p.category else "Uncategorized",
+            "icon": ICON_MAP.get(p.category.name if p.category else "", "fi fi-rr-box"),
+        })
+
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return JsonResponse({
+            "currency": currency,
+            "currency_symbol": currency_symbols[currency],
+            "products": converted_products,
+        })
+
     return render(request, "myapp/store.html", {
-        "categories": HobbyDetail.objects.all(),
-        "products": Product.objects.all(),
+        "products": converted_products,
+        "currency": currency,
+        "currency_symbol": currency_symbols[currency],
+        "rates": rates.keys(),
     })
 
 
