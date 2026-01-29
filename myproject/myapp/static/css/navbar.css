@@ -8,10 +8,9 @@
 
 .navbar-nav {
   display: flex;
-  flex-direction: row;   /*  KLUCZOWE */
+  flex-direction: row;   /* KLUCZOWE */
   gap: 32px;
 }
-
 
 .navbar {
   display: flex;
@@ -30,7 +29,7 @@
   text-decoration: none;
 }
 
-/* ikonki i przyciski po prawej */
+/* IKONA DOMKU */
 .nav-icon {
   color: #ffffff;
   font-size: 22px;
@@ -38,16 +37,28 @@
   margin-left: 15px;
 }
 
-.sign-in-btn {
-  border: 1px solid #ffffff;
-  background: transparent;
-  color: #ffffff;
-  padding: 8px 14px;
-  border-radius: 8px;
+/* ====== WSPÓLNY PRZYCISK: SIGN IN / LOG OUT ====== */
+.nav-action-btn {
+  background-color: transparent;
+  border: 2px solid #DFC39A;
+  color: #DFC39A;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 15px;
   cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
 }
 
-.sign-in-btn:hover {
-  background: #ffffff;
-  color: #000;
+.nav-action-btn:hover {
+  background-color: #DFC39A;
+  color: #302371;
+}
+
+/* FORM W NAVBARZE */
+.navbar form {
+  display: inline;
 }

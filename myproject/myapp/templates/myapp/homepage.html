@@ -17,17 +17,13 @@
       </div>
 
       <div class="hero-buttons">
-        {% if user.is_authenticated %}
-          <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="hero-btn">
-              Log out
-            </button>
-          </form>
-        {% else %}
-          <a href="{% url 'login' %}" class="hero-btn">Sign In</a>
-          <a href="{% url 'register' %}" class="hero-btn">Sign Up</a>
-        {% endif %}
+        {% if not user.is_authenticated %}
+          <div class="hero-buttons">
+            <a href="{% url 'login' %}" class="hero-btn">Sign In</a>
+            <a href="{% url 'register' %}" class="hero-btn">Sign Up</a>
+          </div>
+{% endif %}
+
     </div>
   </section>
 </header>

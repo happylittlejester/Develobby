@@ -1,59 +1,129 @@
+{% extends "myapp/base.html" %}
 {% load static %}
 
-{% extends "myapp/homepage.html" %}
+{% block title %}Develobby – Profile{% endblock %}
 
-{% block title %}Profil{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
 
 {% block content %}
-<h1>Witaj, {{ request.user.username }}!</h1>
 
-<hr>
+<main class="profile-bg">
+  <div class="profile-container">
 
-<p><strong>Plan:</strong>
-    {% if user.userstats.subscription %}
-        {{ user.userstats.subscription.name }}
-    {% else %}
-        Free
-    {% endif %}
-</p>
-
-<hr>
-{% if current_level %}
-    <h3>
-    Level: {{ level_number }} {{ current_level.title }} ({{ current_xp }} XP)</h3>
-    <div style="border: 1px solid #ccc; width: 300px; height: 25px; border-radius: 5px; background-color: #eee;">
-        <div style="width: {{ progress_percent }}%; height: 100%; background-color: #4caf50; border-radius: 5px;"></div>
+    <!-- Welcome -->
+    <div class="welcome-card">
+      <p class="welcome-small">Welcome back,</p>
+      <h3 class="welcome-title">Track your progress! ✨</h3>
     </div>
-    <p>{{ progress_percent }}% do następnego poziomu ({{ next_level.title }})</p>
-{% else %}
-    <p>Nie przypisano poziomu.</p>
-{% endif %}
-<hr>
 
-<h3>Twoje hobby:</h3>
-<ul>
-    {% for hobby in hobbies %}
-        <li>{{ hobby.detail.name }}</li>
-    {% empty %}
-        <li>Nie wybrałeś jeszcze hobby.</li>
-    {% endfor %}
-</ul>
+    <!-- USER CARD -->
+    <section class="user-card">
+      <div class="user-left">
 
-<p><a href="{% url 'hobby_panel' %}" class="btn btn-primary">Wybierz hobby</a></p>
+        <div class="avatar"></div>
 
-<h1>------------------</h1>
+        <div class="user-info">
+          <h2 class="username">{{ request.user.username }}</h2>
 
-<p>Chcesz podzielić się postępami z przyjaciółmi? Dołącz do naszego serwera Discord! (przycisk)</p>
+          <div class="user-badges">
+            {% if current_level %}
+              <span class="badge-pill">
+                <i class="bi bi-star-fill"></i>
+                {{ current_level.title }}
+              </span>
 
-<h1>------------------</h1>
+              <span class="badge-pill">
+                <i class="bi bi-bar-chart-fill"></i>
+                {{ level_number }} lvl
+              </span>
+            {% endif %}
+          </div>
 
-<h1>Twoje tytuły</h1>
+          <div class="xp-wrap">
+            <div class="xp-bar">
+              <div class="xp-fill" style="width: {{ progress_percent }}%;"></div>
+            </div>
+            <p class="xp-text">
+              {{ current_xp }} XP
+              {% if next_level %}
+                / {{ next_level.xp_required }} XP
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
 
-<h1>------------------</h1>
+      <div class="user-right">
+        {% if current_level %}
+          <div class="top-right-mini">
+            <span class="mini-lvl">{{ level_number }} lvl</span>
+            <span class="mini-title">{{ current_level.title }}</span>
+            <i class="bi bi-person-circle mini-icon"></i>
+          </div>
+        {% endif %}
+      </div>
+    </section>
 
-<h1>Chcesz więcej funkcji?</h1>
-<p>Dostosuj swój profil i rozwijaj się szybciej dzięki Develobby Premium.</p>
-<p>Jedno kliknięcie dzieli Cię od nowych możliwości <a href="{% url 'upgrade' %}" class="btn">Upgrade</a></p>
+    <!-- HOBBIES -->
+    <h2 class="section-title">My hobbies</h2>
 
-<p><a href="{% url 'logout' %}">Wyloguj się</a></p>
+    <section class="hobbies-grid">
+      {% for hobby in hobbies %}
+        <div class="hobby-card">
+          <div class="hobby-icon">
+            <i class="bi bi-activity"></i>
+          </div>
+
+          <h3>{{ hobby.detail.name }}</h3>
+
+          <p class="progress-label">Progress made:</p>
+          <div class="progress-big">—%</div>
+
+          <a href="{% url 'hobby_detail' hobby.detail.id %}" class="small-btn">
+            Go to hobby
+          </a>
+        </div>
+      {% empty %}
+        <p>You have no hobbies yet.</p>
+      {% endfor %}
+    </section>
+
+    <!-- DISCORD -->
+    <section class="discord-strip">
+      <p>Want to share your progress with friends? Join our Discord server!</p>
+      <button class="small-btn">Join now</button>
+    </section>
+
+    <!-- TITLES -->
+    <h2 class="section-title titles-title">Titles</h2>
+
+    <section class="titles-grid">
+      {% for lvl in levels %}
+        <div class="title-card {% if current_xp < lvl.xp_required %}locked-title{% endif %}">
+          <h4>{{ lvl.title }}</h4>
+          <p>Reach {{ lvl.xp_required }} XP to get this title</p>
+
+          {% if current_xp < lvl.xp_required %}
+            <i class="bi bi-lock-fill lock-icon"></i>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+
+    <!-- PREMIUM -->
+    <section class="premium-banner">
+      <div class="premium-text">
+        <h3>Want more features?</h3>
+        <p>
+          Customize your profile and grow faster with Develobby premium.
+        </p>
+      </div>
+      <a href="{% url 'upgrade' %}" class="small-btn">Upgrade</a>
+    </section>
+
+  </div>
+</main>
+
 {% endblock %}
