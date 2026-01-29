@@ -16,13 +16,18 @@
         <h1 class="hero-title">Develobby</h1>
       </div>
 
-      {% if not request.user.is_authenticated %}
       <div class="hero-buttons">
-        <a href="{% url 'login' %}" class="hero-btn">Sign In</a>
-        <a href="{% url 'register' %}" class="hero-btn">Sign Up</a>
-      </div>
-      {% endif %}
-
+        {% if user.is_authenticated %}
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="hero-btn">
+              Log out
+            </button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}" class="hero-btn">Sign In</a>
+          <a href="{% url 'register' %}" class="hero-btn">Sign Up</a>
+        {% endif %}
     </div>
   </section>
 </header>
