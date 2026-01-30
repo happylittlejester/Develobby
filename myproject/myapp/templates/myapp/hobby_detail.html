@@ -1,7 +1,7 @@
 {% extends "myapp/base.html" %}
 {% load static %}
 
-{% block title %}{{ detail.name }}{% endblock %}
+{% block title %}{{ detail.name }} - Develobby{% endblock %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/hobby_detail.css' %}">
@@ -111,5 +111,22 @@
 <footer class="main-footer">
   © 2025 Develobby. All rights reserved.
 </footer>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const savedScroll = sessionStorage.getItem("scrollPos");
+        if (savedScroll) {
+            window.scrollTo(0, savedScroll);
+            sessionStorage.removeItem("scrollPos");
+        }
+    });
+
+    document.querySelectorAll("a.mini-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            sessionStorage.setItem("scrollPos", window.scrollY);
+        });
+    });
+</script>
 
 {% endblock %}

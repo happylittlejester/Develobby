@@ -221,8 +221,21 @@ def remove_hobby_choice(request, detail_id):
 
 @login_required
 def hobbies(request):
+    hobbies = request.user.hobbies.all().select_related("detail")
+
+    HOBBY_ICONS = {
+        "Cooking": "fi fi-rr-hat-chef",
+        "Drawing": "fi fi-rr-drawer-alt",
+        "Coding": "fi fi-rr-square-terminal",
+        "Music": "fi fi-rr-music-alt",
+        "Fitness": "fi fi-tr-dumbbell-ray",
+    }
+
+    for h in hobbies:
+        h.detail.icon = HOBBY_ICONS.get(h.detail.name, "fi fi-rr-star")  # fallback
+
     return render(request, "myapp/hobbies.html", {
-        "hobbies": request.user.hobbies.all()
+        "hobbies": hobbies
     })
 
 

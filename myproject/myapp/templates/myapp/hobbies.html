@@ -1,20 +1,55 @@
+{% extends "myapp/base.html" %}
 {% load static %}
 
-{% extends "myapp/homepage.html" %}
+{% block title %}Hobbies - Develobby{% endblock %}
 
-{% block title %}My Hobbies{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/hobby_detail.css' %}">
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
+{% endblock %}
 
 {% block content %}
-<h2>My Hobbies</h2>
-<h4>Your own space for development</h4>
-<hr>
 
-<nav>
+<!-- BANER -->
+<div class="hobby-banner"
+     style="background-image: url('{% static 'img/hobby_panel_main.png' %}');">
+    <div class="banner-text">
+        <h1 class="hero-title">Hobbies</h1>
+        <p class="hero-subtitle">Your space for development</p>
+    </div>
+</div>
+
+<!-- IKONY -->
+<div class="hobby-icons-bar">
+
+    <button class="circle-btn plus-btn" title="Add hobby">
+        <i class="bi bi-plus-lg"></i>
+    </button>
+
     {% for hobby in hobbies %}
-        <a href="{% url 'hobby_detail' hobby.detail.id %}">{{ hobby.detail.name }}</a>
-    {% empty %}
-        <span style="color: gray;">You have no hobbies yet. Add them in Hobby Panel.</span>
+    <button class="circle-btn"
+            title="{{ hobby.detail.name }}"
+            onclick="window.location.href='{% url 'hobby_detail' hobby.detail.id %}'">
+        <i class="{{ hobby.detail.icon }}"></i>
+    </button>
     {% endfor %}
-</nav>
+
+
+    <button class="circle-btn plus-btn" title="Add hobby">
+        <i class="bi bi-plus-lg"></i>
+    </button>
+
+</div>
+<br><br><br><br>
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
 
 {% endblock %}
