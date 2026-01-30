@@ -234,6 +234,66 @@ def hobby_detail(request, detail_id):
     detail = get_object_or_404(HobbyDetail, id=detail_id)
     challenges = Challenge.objects.filter(hobby_detail=detail)
 
+    # IKONY
+    HOBBY_ICONS = {
+        "Cooking": "fi fi-rr-hat-chef",
+        "Drawing": "fi fi-rr-drawer-alt",
+        "Coding": "fi fi-rr-square-terminal",
+        "Music": "fi fi-rr-music-alt",
+        "Fitness": "fi fi-tr-dumbbell-ray",
+    }
+
+    CHALLENGE_ICONS = {
+        # Cooking
+        "Thai Cuisine": "fi fi-sr-bowl-chopsticks-noodles",
+        "Spanish Sweets": "fi fi-sr-candy",
+        "Paprika Dish": "fi fi-sr-pepper-alt",
+        "Green Plate": "fi fi-sr-salad",
+        "Chicken In 5 Ways": "fi fi-sr-turkey",
+
+        # Drawing
+        "Basic Shapes": "fi fi-ss-resources",
+        "Still Life Study": "fi fi-sr-apple-whole",
+        "Texture Practice": "fi fi-br-fabric",
+        "Gesture Sketching": "fi fi-sr-transporter",
+        "14 Days Drawing Challenge": "fi fi-br-paintbrush-pencil",
+
+        # Coding
+        "Simple Calculator": "fi fi-br-calculator",
+        "Data Structures Practice": "fi fi-sr-folder-open",
+        "Calendar": "fi fi-br-calendar-day",
+        "Rock, Paper, Scissors": "fi fi-sc-gamepad",
+        "Roman to Arabic Converter": "fi fi-sr-pillar",
+
+        # Music
+        "Rhythm Foundations": "fi fi-sr-headphones-rhythm",
+        "Chill Lo-Fi Vibes": "fi fi-sr-circle-waveform-lines",
+        "Sound Collector": "fi fi-sr-microphone",
+        "Music for Motion": "fi fi-rr-film",
+        "Latin Heat": "fi fi-rs-temperature-high",
+
+        # Fitness
+        "Warm-Up Essentials": "fi fi-br-yoga-moon",
+        "Cardio Exploration": "fi fi-br-treadmill",
+        "Build Endurance": "fi fi-rr-dumbbell-weightlifting",
+        "Dumbbell Training": "fi fi-sr-gym",
+        "Mobility Improvement": "fi fi-br-meditation",
+    }
+
+    # ikona aktualnego hobby
+    detail.icon = HOBBY_ICONS.get(detail.name, "bi bi-star")
+
+    # ikony challenges
+    for ch in challenges:
+        ch.icon = CHALLENGE_ICONS.get(ch.title, "bi bi-circle-half")
+
+    hobbies = request.user.hobbies.all()
+
+    # ikony hobby w pasku
+    for h in hobbies:
+        h.detail.icon = HOBBY_ICONS.get(h.detail.name, "bi bi-star")
+
+    # user progress
     user_challenges = UserChallenges.objects.filter(
         user=request.user,
         challenge__in=challenges
@@ -250,16 +310,16 @@ def hobby_detail(request, detail_id):
         else:
             ch.user_state = "done"
 
-    total = challenges.count() 
-    completed = len([c for c in challenges if c.user_state == "completed"]) 
+    total = challenges.count()
+    completed = len([c for c in challenges if c.user_state == "completed"])
     percent = int((completed / total) * 100) if total > 0 else 0
 
     return render(request, "myapp/hobby_detail.html", {
         "detail": detail,
         "challenges": challenges,
-        "hobbies": request.user.hobbies.all(),
-        "completed": completed, 
-        "total": total, 
+        "hobbies": hobbies,
+        "completed": completed,
+        "total": total,
         "percent": percent,
     })
 
