@@ -1,114 +1,111 @@
-{% extends "myapp/homepage.html" %}
+{% extends "myapp/base.html" %}
 {% load static %}
 
 {% block title %}{{ detail.name }}{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'css/hobby.css' %}"> 
+<link rel="stylesheet" href="{% static 'css/hobby_detail.css' %}">
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css'>
-<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'> 
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-chubby/css/uicons-solid-chubby.css'>
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
 {% endblock %}
 
 {% block content %}
 
-<!-- HERO -->
-<header class="hobby-hero">
-  <div class="hero-overlay">
-    <h1 class="hero-title">{{ detail.name }}</h1>
-    <p class="hero-subtitle">Your space for development</p>
-  </div>
-</header>
+<!-- BANER -->
+<div class="hobby-banner"
+     style="background-image: url('{% static 'img/' %}{{ detail.banner }}');">
+    <div class="banner-text">
+        <h1 class="hero-title">{{ detail.name }}</h1>
+        <p class="hero-subtitle">Your space for development</p>
+    </div>
+</div>
 
-<main class="hobby-bg">
+<!-- IKONY -->
+<div class="hobby-icons-bar">
 
-  <!-- ICONS BAR -->
-  <section class="hobby-icons-bar">
-
-    <!-- Add hobby button -->
     <button class="circle-btn plus-btn" title="Add hobby">
-      <i class="bi bi-plus-lg"></i>
+        <i class="bi bi-plus-lg"></i>
     </button>
 
     {% for hobby in hobbies %}
-      <button class="circle-btn {% if hobby.detail.id == detail.id %}active{% endif %}"
-              title="{{ hobby.detail.name }}"
-              onclick="window.location.href='{% url 'hobby_detail' hobby.detail.id %}'">
-        <i class="{{ hobby.detail.icon }}"></i>
-      </button>
+        <button class="circle-btn {% if hobby.detail.id == detail.id %}active{% endif %}"
+                title="{{ hobby.detail.name }}"
+                onclick="window.location.href='{% url 'hobby_detail' hobby.detail.id %}'">
+            <i class="{{ hobby.detail.icon }}"></i>
+        </button>
     {% endfor %}
 
     <button class="circle-btn plus-btn" title="Add hobby">
-      <i class="bi bi-plus-lg"></i>
+        <i class="bi bi-plus-lg"></i>
     </button>
 
-  </section>
+</div>
 
-  <!-- MAIN HOBBY CARD -->
-  <section class="hobby-card">
+<!-- KARTA HOBBY -->
+<div class="hobby-card">
 
     <div class="hobby-head">
         <h2>{{ detail.name }}</h2>
         <p>Hobby progress: <b>{{ completed }}/{{ total }} ({{ percent }}%)</b></p>
     </div>
 
-
     <div class="tasks-list">
+        {% for challenge in challenges %}
+        <article class="task-item {% if challenge.user_state == 'completed' %}disabled{% endif %}">
 
-      {% for challenge in challenges %}
-      <article class="task-item {% if challenge.user_state == 'completed' %}disabled{% endif %}">
-
-        <div class="task-left">
-          <div class="task-icon">
-            <i class="{{ challenge.icon }}"></i>
-          </div>
-
-          <div class="task-text">
-            <h3>{{ challenge.title }}</h3>
-            <p>{{ challenge.description }}</p>
-
-            <div class="task-progress">
-              <div class="task-bar">
-                <div class="task-fill"
-                     style="width:
-                       {% if challenge.user_state == 'completed' %}100%
-                       {% elif challenge.user_state == 'done' %}100%
-                       {% else %}0%
-                       {% endif %}
-                     ">
+            <div class="task-left">
+                <div class="task-icon">
+                    <i class="{{ challenge.icon }}"></i>
                 </div>
-              </div>
 
-              {% if challenge.user_state == "not_started" %}
-                <a href="{% url 'challenge_done' challenge.id %}" class="mini-btn">Done</a>
+                <div class="task-text">
+                    <h3>{{ challenge.title }}</h3>
+                    <p>{{ challenge.description }}</p>
 
-              {% elif challenge.user_state == "done" %}
-                <a href="{% url 'challenge_collect' challenge.id %}" class="mini-btn">Collect prize</a>
+                    <div class="task-progress">
+                        <div class="task-bar">
+                            <div class="task-fill"
+                                 style="width:
+                                   {% if challenge.user_state == 'completed' %}100%
+                                   {% elif challenge.user_state == 'done' %}100%
+                                   {% else %}0%
+                                   {% endif %}
+                                 ">
+                            </div>
+                        </div>
 
-              {% elif challenge.user_state == "completed" %}
-                <button class="mini-btn" disabled>Completed</button>
-              {% endif %}
+                        {% if challenge.user_state == "not_started" %}
+                            <a href="{% url 'challenge_done' challenge.id %}" class="mini-btn">Done</a>
+
+                        {% elif challenge.user_state == "done" %}
+                            <a href="{% url 'challenge_collect' challenge.id %}" class="mini-btn">Collect prize</a>
+
+                        {% elif challenge.user_state == "completed" %}
+                            <button class="mini-btn" disabled>Completed</button>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
 
-        <div class="task-right">
-          <span class="prize-label">Prize:</span>
-          <span class="prize-xp">+ {{ challenge.xp_reward }} XP</span>
-        </div>
+            <div class="task-right">
+                <span class="prize-label">Prize:</span>
+                <span class="prize-xp">+ {{ challenge.xp_reward }} XP</span>
+            </div>
 
-      </article>
-      {% endfor %}
-
+        </article>
+        {% endfor %}
     </div>
 
-  </section>
+</div>
 
-</main>
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
 
 {% endblock %}

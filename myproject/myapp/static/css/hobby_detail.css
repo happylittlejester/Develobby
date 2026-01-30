@@ -9,60 +9,51 @@
 }
 
 /* =========================
-   HERO
+   BANER
 ========================= */
-.hobby-hero {
-  height: 200px  !important;
-  background: url("hobby_drawing.png") no-repeat center/cover;
-  background-position: center 25%;
+
+.hobby-banner {
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
   position: relative;
-  margin: 0;
-  padding: 0;
+  overflow: hidden;
 }
 
-.hero-overlay {
-  height: 100%;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.42);
+.banner-text {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.42);
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 0 10%;
 }
 
 .hero-title {
-  font-size: 3.1rem;
+  font-size: 3rem;
   font-weight: 900;
   margin: 0;
-  letter-spacing: 0.5px;
 }
 
 .hero-subtitle {
   margin-top: 6px;
   opacity: 0.9;
-  font-size: 0.92rem;
-}
-
-/* =========================
-   TŁO POD HERO
-========================= */
-.hobby-bg {
-  min-height: calc(100vh - 64px);
-  background: url("ChatGPT_Image_29_lis_2025_17_41_00.png") no-repeat center/cover;
-  margin: 0;
-  padding: 26px 16px 90px;
+  font-size: 0.95rem;
 }
 
 /* =========================
    IKONY (BAR)
 ========================= */
+
 .hobby-icons-bar {
   width: 100%;
-  max-width: 1120px; 
-  margin: 0 auto 24px;
+  max-width: 1120px;
+  margin: 24px auto;
 
   background: rgba(151, 83, 204, 0.55);
   border-radius: 22px;
@@ -71,7 +62,7 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 16px 34px; 
+  padding: 16px 34px;
 
   box-shadow: 0 22px 60px rgba(0,0,0,0.30);
   backdrop-filter: blur(10px);
@@ -116,9 +107,10 @@
 /* =========================
    GŁÓWNA KARTA
 ========================= */
+
 .hobby-card {
   max-width: 1020px;
-  margin: 18px auto 0;
+  margin: 24px auto 40px;
 
   background: rgba(32, 24, 75, 0.92);
   border-radius: 26px;
@@ -146,8 +138,9 @@
 }
 
 /* =========================
-   TASKI (LISTA)
+   TASKI
 ========================= */
+
 .tasks-list {
   display: flex;
   flex-direction: column;
@@ -183,10 +176,6 @@
 
   font-size: 1.25rem;
   flex: 0 0 auto;
-}
-
-.task-text {
-  width: 100%;
 }
 
 .task-text h3 {
@@ -243,7 +232,6 @@
   opacity: 0.95;
 }
 
-/* PRAWA STRONA PRIZE */
 .task-right {
   min-width: 115px;
   text-align: right;
@@ -262,7 +250,10 @@
   font-size: 0.9rem;
 }
 
-/* ZABLOKOWANE */
+/* =========================
+   ZABLOKOWANE
+========================= */
+
 .task-item.disabled {
   opacity: 0.32;
 }
@@ -276,7 +267,17 @@
 /* =========================
    RESPONSIVE
 ========================= */
+
 @media (max-width: 900px) {
+
+  .hobby-banner {
+    height: 140px;
+  }
+
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
   .hobby-icons-bar {
     max-width: 92%;
     padding: 14px 18px;
@@ -308,8 +309,16 @@
     text-align: left;
     width: 100%;
   }
+}
 
-  .task-bar {
-    width: 100%;
-  }
+/* =========================
+   FOOTER
+========================= */
+
+.main-footer {
+  color: #DFC39A;
+  background-color: #302371;
+  text-align: left;
+  padding: 10px 30px;
+  margin-top: 40px;
 }

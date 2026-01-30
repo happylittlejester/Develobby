@@ -234,6 +234,14 @@ def hobby_detail(request, detail_id):
     detail = get_object_or_404(HobbyDetail, id=detail_id)
     challenges = Challenge.objects.filter(hobby_detail=detail)
 
+    HOBBY_BANNERS = {
+        "Cooking": "hobby_cooking.png",
+        "Drawing": "hobby_drawing.png",
+        "Coding": "hobby_coding.png",
+        "Music": "hobby_music.png",
+        "Fitness": "hobby_fitness.png",
+    }
+
     # IKONY
     HOBBY_ICONS = {
         "Cooking": "fi fi-rr-hat-chef",
@@ -279,6 +287,8 @@ def hobby_detail(request, detail_id):
         "Dumbbell Training": "fi fi-sr-gym",
         "Mobility Improvement": "fi fi-br-meditation",
     }
+
+    detail.banner = HOBBY_BANNERS.get(detail.name, "default_banner.png")
 
     # ikona aktualnego hobby
     detail.icon = HOBBY_ICONS.get(detail.name, "bi bi-star")
