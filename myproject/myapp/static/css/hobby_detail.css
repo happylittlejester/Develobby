@@ -138,7 +138,7 @@
 }
 
 /* =========================
-   TASKI
+   TASKI — UKŁAD 3-KOLUMNOWY
 ========================= */
 
 .tasks-list {
@@ -148,21 +148,19 @@
 }
 
 .task-item {
+  display: grid;
+  grid-template-columns: 60px 1fr 120px;
+  gap: 16px;
   background: rgba(255,255,255,0.06);
   border-radius: 18px;
   padding: 16px 18px;
-
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 16px;
 }
 
-.task-left {
+/* LEWA KOLUMNA — IKONA */
+.task-col-icon {
   display: flex;
-  gap: 14px;
-  flex: 1;
-  align-items: flex-start;
+  justify-content: center;
 }
 
 .task-icon {
@@ -170,33 +168,29 @@
   height: 44px;
   border-radius: 999px;
   background: rgba(0,0,0,0.25);
-
   display: grid;
   place-items: center;
-
   font-size: 1.25rem;
-  flex: 0 0 auto;
 }
 
-.task-text h3 {
+/* ŚRODKOWA KOLUMNA — TEKST + PROGRESS */
+.task-col-main h3 {
   margin: 0;
   font-size: 1.05rem;
   font-weight: 900;
 }
 
-.task-text p {
-  margin: 4px 0 12px;
+.task-col-main p {
+  margin: 4px 0 10px;
   opacity: 0.75;
   font-size: 0.84rem;
   line-height: 1.35;
-  max-width: 680px;
 }
 
-.task-progress {
+.task-progress-row {
   display: flex;
   align-items: center;
   gap: 14px;
-  width: 100%;
 }
 
 .task-bar {
@@ -213,17 +207,16 @@
   border-radius: 99px;
 }
 
+/* PRZYCISK */
 .mini-btn {
-  margin-left: auto;
+  flex-shrink: 0;
   background: var(--beige);
   color: var(--dark-purple);
   border: none;
   border-radius: 999px;
-
   padding: 6px 14px;
   font-size: 0.78rem;
   font-weight: 700;
-
   cursor: pointer;
   box-shadow: 0 8px 18px rgba(0,0,0,0.25);
 }
@@ -232,10 +225,9 @@
   opacity: 0.95;
 }
 
-.task-right {
-  min-width: 115px;
+/* PRAWA KOLUMNA — XP */
+.task-col-xp {
   text-align: right;
-  opacity: 0.92;
 }
 
 .prize-label {
@@ -301,13 +293,14 @@
   }
 
   .task-item {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: auto auto;
   }
 
-  .task-right {
+  .task-col-xp {
+    grid-column: 2;
     text-align: left;
-    width: 100%;
+    margin-top: 8px;
   }
 }
 

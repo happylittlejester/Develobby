@@ -59,46 +59,50 @@
         {% for challenge in challenges %}
         <article class="task-item {% if challenge.user_state == 'completed' %}disabled{% endif %}">
 
-            <div class="task-left">
+            <!-- LEWA KOLUMNA: IKONA -->
+            <div class="task-col-icon">
                 <div class="task-icon">
                     <i class="{{ challenge.icon }}"></i>
                 </div>
+            </div>
 
-                <div class="task-text">
-                    <h3>{{ challenge.title }}</h3>
-                    <p>{{ challenge.description }}</p>
+            <!-- ŚRODKOWA KOLUMNA: TYTUŁ, OPIS, PROGRESS, BUTTON -->
+            <div class="task-col-main">
+                <h3>{{ challenge.title }}</h3>
+                <p>{{ challenge.description }}</p>
 
-                    <div class="task-progress">
-                        <div class="task-bar">
-                            <div class="task-fill"
-                                 style="width:
-                                   {% if challenge.user_state == 'completed' %}100%
-                                   {% elif challenge.user_state == 'done' %}100%
-                                   {% else %}0%
-                                   {% endif %}
-                                 ">
-                            </div>
+                <div class="task-progress-row">
+                    <div class="task-bar">
+                        <div class="task-fill"
+                            style="width:
+                            {% if challenge.user_state == 'completed' %}100%
+                            {% elif challenge.user_state == 'done' %}100%
+                            {% else %}0%
+                            {% endif %}
+                            ">
                         </div>
-
-                        {% if challenge.user_state == "not_started" %}
-                            <a href="{% url 'challenge_done' challenge.id %}" class="mini-btn">Done</a>
-
-                        {% elif challenge.user_state == "done" %}
-                            <a href="{% url 'challenge_collect' challenge.id %}" class="mini-btn">Collect prize</a>
-
-                        {% elif challenge.user_state == "completed" %}
-                            <button class="mini-btn" disabled>Completed</button>
-                        {% endif %}
                     </div>
+
+                    {% if challenge.user_state == "not_started" %}
+                        <a href="{% url 'challenge_done' challenge.id %}" class="mini-btn">Done</a>
+
+                    {% elif challenge.user_state == "done" %}
+                        <a href="{% url 'challenge_collect' challenge.id %}" class="mini-btn">Collect prize</a>
+
+                    {% elif challenge.user_state == "completed" %}
+                        <button class="mini-btn" disabled>Completed</button>
+                    {% endif %}
                 </div>
             </div>
 
-            <div class="task-right">
+            <!-- PRAWA KOLUMNA: XP -->
+            <div class="task-col-xp">
                 <span class="prize-label">Prize:</span>
                 <span class="prize-xp">+ {{ challenge.xp_reward }} XP</span>
             </div>
 
         </article>
+
         {% endfor %}
     </div>
 
