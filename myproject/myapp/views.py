@@ -197,9 +197,23 @@ def store(request):
 # =========================
 @login_required
 def hobby_panel(request):
+    hobbies = HobbyDetail.objects.all()
+
+    HOBBY_ICONS = {
+        "Cooking": "fi fi-rr-hat-chef",
+        "Drawing": "fi fi-rr-drawer-alt",
+        "Coding": "fi fi-rr-square-terminal",
+        "Music": "fi fi-rr-music-alt",
+        "Fitness": "fi fi-sr-person-lunge",
+    }
+
+    for hobby in hobbies:
+        hobby.icon = HOBBY_ICONS.get(hobby.name, "fi fi-rr-star")
+
     return render(request, "myapp/hobby_panel.html", {
-        "hobbies": HobbyDetail.objects.all()
+        "hobbies": hobbies
     })
+
 
 
 @login_required
@@ -382,6 +396,7 @@ def challenge_collect(request, challenge_id):
         stats.save()
 
     return redirect("hobby_detail", detail_id=challenge.hobby_detail.id)
+    
 
 
 # =========================

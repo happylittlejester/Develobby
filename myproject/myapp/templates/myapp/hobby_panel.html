@@ -5,6 +5,12 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/hobby_panel.css' %}">
+<link rel="stylesheet"
+ href="https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-rounded/css/uicons-regular-rounded.css">
+<link rel="stylesheet"
+ href="https://cdn-uicons.flaticon.com/3.0.0/uicons-brands/css/uicons-brands.css">
+<link rel="stylesheet"
+ href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
 {% endblock %}
 
 {% block content %}
@@ -42,8 +48,9 @@
         {% for hobby in hobbies %}
         <div class="hobby-card">
             <div class="icon-circle">
-                <img src="{% static 'img/default_hobby.png' %}" class="hobby-icon">
+                <i class="{{ hobby.icon }}"></i>
             </div>
+
 
             <h3>{{ hobby.name }}</h3>
             <p>{{ hobby.description }}</p>
@@ -65,5 +72,10 @@
 
     </div>
 </section>
+
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
+
 
 {% endblock %}

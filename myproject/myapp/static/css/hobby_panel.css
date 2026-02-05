@@ -41,6 +41,7 @@ body {
   width: 95%;
   box-shadow: 0 15px 40px rgba(0,0,0,0.4);
   text-align: left;
+  align-items: center;
 }
 
 .welcome-text {
@@ -99,14 +100,16 @@ body {
 
 /* ===== IKONY ===== */
 .icon-circle {
+  font-size: 34px;
   width: 70px;
   height: 70px;
   background: #704ABC;
   border-radius: 50%;
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
   border: 4px solid #302371;
+  line-height: 2;
 }
 
 .hobby-icon {
@@ -115,15 +118,25 @@ body {
 
 /* ===== BUTTONS ===== */
 .btn-action {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
+  width: 80px;
+  height: 35px;
+  border-radius: 999px;
   background-color: #DFC39A;
   color: #704ABC;
   font-size: 26px;
   border: none;
   cursor: pointer;
   margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.hobby-actions {
+  display: flex;
+  gap: 12px;
 }
 
 /* ===== COMING SOON ===== */
@@ -133,6 +146,17 @@ body {
   opacity: 0.9;
   justify-content: center;
 }
+
+/* ===== FOOTER ===== */
+.main-footer {
+  background-color: #704ABC;
+  color: #DFC39A;
+  padding: 14px 30px;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 60px;
+}
+
 
 /* ===== MOBILE ===== */
 @media (max-width: 850px) {
