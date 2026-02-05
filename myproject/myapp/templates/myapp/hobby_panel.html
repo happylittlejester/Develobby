@@ -77,5 +77,20 @@
   © 2025 Develobby. All rights reserved.
 </footer>
 
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const savedScroll = sessionStorage.getItem("hobbyScroll");
+    if (savedScroll) {
+      window.scrollTo(0, savedScroll);
+      sessionStorage.removeItem("hobbyScroll");
+    }
+  });
+
+  document.querySelectorAll(".btn-action").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sessionStorage.setItem("hobbyScroll", window.scrollY);
+    });
+  });
+</script>
 
 {% endblock %}
