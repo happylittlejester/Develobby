@@ -18,12 +18,15 @@ html, body {
   height: 100%;
 }
 
+/* ================== BODY LAYOUT ================== */
 body {
   color: var(--white);
-  background: transparent;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#281E5E, #3D2D8B);
 }
 
-/* NAVBAR */
+/* ================== NAVBAR ================== */
 .navbar-develobby {
   background-color: var(--dark-purple);
   padding: 12px 24px;
@@ -35,16 +38,18 @@ body {
   cursor: pointer;
 }
 
-/* BACKGROUND */
+/* ================== MAIN WRAPPER ================== */
+/* 🔑 TO JEST KLUCZ DO ZNIKNIĘCIA BIAŁEGO PASKA */
 .auth-bg {
-  min-height: calc(100vh - 64px);
+  flex: 1; /* wypycha stopkę na dół */
   display: flex;
   justify-content: center;
   align-items: center;
   background: url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png") center/cover no-repeat;
+  padding: 40px 20px;
 }
 
-/* CARD */
+/* ================== CARD ================== */
 .auth-card {
   width: 100%;
   max-width: 720px;
@@ -53,19 +58,21 @@ body {
   padding: 44px 48px;
 }
 
-/* TITLE */
+/* ================== TITLE ================== */
 .auth-title {
   font-size: 2.3rem;
   text-align: center;
   margin-bottom: 8px;
+  font-weight: 700;
 }
 
 .auth-subtitle {
   text-align: center;
   margin-bottom: 24px;
+  font-size: 0.95rem;
 }
 
-/* INPUTS (Django) */
+/* ================== INPUTS ================== */
 .auth-card input {
   width: 100%;
   height: 44px;
@@ -77,7 +84,7 @@ body {
   color: white;
 }
 
-/* BUTTON */
+/* ================== BUTTON ================== */
 .auth-btn {
   width: 100%;
   background: var(--beige);
@@ -87,4 +94,18 @@ body {
   padding: 12px;
   font-weight: 700;
   cursor: pointer;
+  margin-top: 10px;
+}
+
+.auth-btn:hover {
+  opacity: 0.95;
+}
+
+/* ================== FOOTER ================== */
+.main-footer {
+  background-color: #302371;
+  color: #DFC39A;
+  text-align: center;
+  padding: 14px 30px;
+  font-size: 14px;
 }
