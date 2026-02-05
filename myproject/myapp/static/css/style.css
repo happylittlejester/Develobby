@@ -82,13 +82,16 @@ section {
 
 .about h2,
 .team h2 {
-  margin-bottom: 20px;
-  font-size: 2.2rem;
+  font-size: 2.6rem;      /* było ~2.2 */
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 28px;
 }
 
 .about p {
-  line-height: 1.7;
-  opacity: 0.95;
+  font-size: 1.1rem;      /* było ~1rem */
+  line-height: 1.8;
+  max-width: 520px;       /* żeby tekst nie był za szeroki */
 }
 
 .team {
@@ -117,7 +120,7 @@ section {
 /* KARTA */
 .hero-card {
   width: 340px;
-  height: 170px;
+  height: 190px; /* 🔽 było 170 */
   background: url("../img/Card_DISPLAY_ELEMENTSDEFAULT.png") no-repeat center / contain;
   display: flex;
   flex-direction: column;
@@ -126,15 +129,19 @@ section {
   text-align: center;
 }
 
+
 .hero-subtitle {
   font-size: 1rem;
   letter-spacing: 1px;
+  margin-bottom: 2px;   /* 🔽 ciaśniej */
+  line-height: 1.1;
 }
 
 .hero-title {
   font-size: 2.2rem;
   font-weight: 700;
-  margin-top: 6px;
+  margin-top: 6px;        
+  margin-bottom: 18px;
 }
 
 /* BUTTONS */
@@ -202,23 +209,53 @@ section {
 
 .contact-left {
   background-color: var(--pink-violet);
-  padding: 80px 10%;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.contact-content {
+  width: 100%;
+  padding: 80px 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 36px;
 }
 
+/* TYTUŁ */
+.contact-content h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.contact-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* LISTA */
 .contact-items {
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  margin-top: 40px;
+  gap: 28px;
+  margin-top: 20px;
 }
 
+/* POJEDYNCZA LINIA */
 .contact-item {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+/* IKONY – DUŻE I CZYTELNE */
+.contact-item i {
+  font-size: 2.2rem;
+  opacity: 0.95;
 }
 
 .contact-right img {
