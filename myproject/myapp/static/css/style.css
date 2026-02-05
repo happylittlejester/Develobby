@@ -30,16 +30,9 @@ body {
 
 header {
   min-height: 100vh;
-  /*  GRADIENT + OBRAZ */
-  background:
-    linear-gradient(
-      180deg,
-      rgba(112, 74, 188, 0.95),
-      rgba(151, 83, 204, 0.95)
-    ),
-    url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png");
+  background-image: url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png");
   background-size: cover;
-  background-position: center;
+  background-position: center 1%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,6 +188,15 @@ section {
   font-weight: 600;
   margin-left: auto;
   text-decoration: none;
+}
+
+.main-footer {
+  background-color: #302371;   
+  color: #DFC39A;              
+  text-align: center;
+  padding: 18px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
 
 /* ================= CONTACT ================= */
