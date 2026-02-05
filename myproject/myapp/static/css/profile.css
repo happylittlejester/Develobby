@@ -22,9 +22,15 @@ body {
 /* tło */
 .profile-bg {
   min-height: calc(100vh - 64px);
-  background: url("ChatGPT_Image_29_lis_2025_17_41_00.png") no-repeat center/cover;
   padding: 36px 18px 70px;
+
+  background-image: url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-position: center 1%;
 }
+
 
 /* kontener strony */
 .profile-container {
@@ -32,7 +38,7 @@ body {
   margin: 0 auto;
 }
 
-/* ✅ profil idzie do LEWEJ */
+/*  profil idzie do LEWEJ */
 .profile-container {
   display: flex;
   flex-direction: column;
@@ -142,11 +148,12 @@ body {
   opacity: 0.9;
 }
 
-/* ✅ tytuł My hobbies zostaje na środku */
+/*  tytuł My hobbies zostaje na środku */
 .section-title {
   text-align: center;
   width: 100%;
-  margin: 28px 0 18px;
+  margin-top: 100px;   /* odstęp OD profilu — zostaje */
+  margin-bottom: 0px; /* BLISKO kafelków hobby */
   font-size: 2rem;
   font-weight: 800;
 }
@@ -205,6 +212,7 @@ body {
   font-weight: 700;
   cursor: pointer;
   transition: transform 0.15s ease, opacity 0.15s ease;
+  text-decoration: none;
 }
 
 .small-btn:hover {
@@ -212,19 +220,23 @@ body {
   transform: translateY(-1px);
 }
 
-/* ✅ DISCORD STRIP MA BYĆ NA CAŁĄ STRONĘ */
+/*  DISCORD STRIP MA BYĆ NA CAŁĄ STRONĘ */
 .discord-strip {
-  width: 100%;
+  width: 100vw;                 /* cała szerokość ekranu */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+
   margin-top: 26px;
-  background: rgba(32, 24, 75, 0.85);
-  border-radius: 16px;
-  padding: 16px 20px;
+  background: #302371;
+  border-radius: 0;             /* pełny pasek */
+  padding: 30px 40px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
 }
+
 
 .discord-strip p {
   margin: 0;
@@ -234,8 +246,9 @@ body {
 
 /* titles title */
 .titles-title {
-  text-align: left;
-  margin-top: 36px;
+  text-align: center;   
+  width: 100%;
+  margin-top: 100px;
 }
 
 /* titles grid */
@@ -279,19 +292,23 @@ body {
   font-size: 1rem;
 }
 
-/* ✅ PREMIUM MA BYĆ NA CAŁĄ STRONĘ */
+/*  PREMIUM MA BYĆ NA CAŁĄ STRONĘ */
 .premium-banner {
-  width: 100%;
+  width: 100vw;                       /* pełna szerokość ekranu */
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+
   margin-top: 28px;
-  background: rgba(151, 83, 204, 0.55);
-  border-radius: 16px;
-  padding: 18px 20px;
+  background: #302371;
+  border-radius: 0;                   /* full-width look */
+  padding: 22px 40px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
 }
+
 
 .premium-banner h3 {
   margin: 0 0 6px;
@@ -329,6 +346,15 @@ body {
 
 .mini-profile-icon {
   font-size: 1.5rem;
+}
+
+.main-footer {
+  background-color: #302371;
+  color: #DFC39A;
+  padding: 14px 30px;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 60px;
 }
 
 /* responsive */

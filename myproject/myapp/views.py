@@ -45,8 +45,24 @@ def register(request):
 @login_required
 def profile(request):
     user = request.user
-    hobbies = Hobby.objects.filter(user=user)
 
+    # 🔹 hobby użytkownika + detail (ważne)
+    hobbies = Hobby.objects.filter(user=user).select_related("detail")
+
+    # 🔹 MAPA IKON HOBBY
+    HOBBY_ICONS = {
+        "Cooking": "fi fi-rr-hat-chef",
+        "Drawing": "fi fi-rr-drawer-alt",
+        "Coding": "fi fi-rr-square-terminal",
+        "Music": "fi fi-rr-music-alt",
+        "Fitness": "fi fi-tr-dumbbell-ray",
+    }
+
+    # 🔹 przypisanie ikon do hobby
+    for hobby in hobbies:
+        hobby.icon = HOBBY_ICONS.get(hobby.detail.name, "fi fi-rr-star")
+
+    # 🔹 statystyki XP
     stats, _ = UserStats.objects.get_or_create(user=user)
     current_xp = stats.xp_total
 
@@ -81,6 +97,7 @@ def profile(request):
         "level_number": level_number,
         "levels": levels,
     })
+
 
 
 # =========================

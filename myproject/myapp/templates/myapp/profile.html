@@ -73,7 +73,7 @@
       {% for hobby in hobbies %}
         <div class="hobby-card">
           <div class="hobby-icon">
-            <i class="bi bi-activity"></i>
+            <i class="{{ hobby.icon }}"></i>
           </div>
 
           <h3>{{ hobby.detail.name }}</h3>
@@ -125,5 +125,9 @@
 
   </div>
 </main>
+
+<footer class="main-footer">
+  © 2025 Develobby. All rights reserved.
+</footer>
 
 {% endblock %}
