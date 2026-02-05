@@ -25,6 +25,8 @@ body {
 body {
   color: var(--white);
   background: transparent;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================
@@ -45,7 +47,6 @@ body {
    BACKGROUND
 ========================= */
 .auth-bg {
-  min-height: calc(100vh - 56px);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -53,6 +54,7 @@ body {
   padding: 48px 16px;
   position: relative;
   overflow: hidden;
+  flex: 1;
 
   background-image: url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png");
   background-repeat: no-repeat;
@@ -166,6 +168,14 @@ body {
 .auth-btn:hover {
   opacity: 0.95;
   transform: translateY(-1px);
+}
+
+.main-footer {
+  background-color: #302371;
+  color: #DFC39A;
+  text-align: left;
+  padding: 10px 30px;
+  font-size: 0.85rem;
 }
 
 /* =========================
