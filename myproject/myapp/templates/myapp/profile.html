@@ -22,7 +22,10 @@
     <section class="user-card">
       <div class="user-left">
 
-        <div class="avatar"></div>
+        <div class="avatar">
+          <img src="{% static 'img/avatar.png' %}" alt="User avatar">
+        </div>
+
 
         <div class="user-info">
           <h2 class="username">{{ request.user.username }}</h2>
@@ -79,7 +82,7 @@
           <h3>{{ hobby.detail.name }}</h3>
 
           <p class="progress-label">Progress made:</p>
-          <div class="progress-big">—%</div>
+          <div class="progress-big">{{ hobby.progress }}%</div>
 
           <a href="{% url 'hobby_detail' hobby.detail.id %}" class="small-btn">
             Go to hobby

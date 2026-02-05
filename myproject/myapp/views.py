@@ -46,10 +46,13 @@ def register(request):
 def profile(request):
     user = request.user
 
-    # 🔹 hobby użytkownika + detail (ważne)
-    hobbies = Hobby.objects.filter(user=user).select_related("detail")
+    hobbies = (
+        Hobby.objects
+        .filter(user=user)
+        .select_related("detail")
+    )
 
-    # 🔹 MAPA IKON HOBBY
+    # 🔹 IKONY
     HOBBY_ICONS = {
         "Cooking": "fi fi-rr-hat-chef",
         "Drawing": "fi fi-rr-drawer-alt",
@@ -58,11 +61,21 @@ def profile(request):
         "Fitness": "fi fi-tr-dumbbell-ray",
     }
 
-    # 🔹 przypisanie ikon do hobby
     for hobby in hobbies:
         hobby.icon = HOBBY_ICONS.get(hobby.detail.name, "fi fi-rr-star")
 
-    # 🔹 statystyki XP
+        challenges = Challenge.objects.filter(hobby_detail=hobby.detail)
+        total = challenges.count()
+
+        completed = UserChallenges.objects.filter(
+            user=user,
+            challenge__in=challenges,
+            completed=True
+        ).count()
+
+        hobby.progress = int((completed / total) * 100) if total > 0 else 0
+
+    # 🔹 XP / LEVEL
     stats, _ = UserStats.objects.get_or_create(user=user)
     current_xp = stats.xp_total
 
@@ -78,14 +91,15 @@ def profile(request):
             if i + 1 < len(levels):
                 next_level = levels[i + 1]
 
+    # 🔑 DOMYŚLNE WARTOŚCI (NAJWAŻNIEJSZE)
+    progress_percent = 100
+    xp_color = "xp-high"
+
     if current_level and next_level:
         xp_range = next_level.xp_required - current_level.xp_required
         xp_progress = current_xp - current_level.xp_required
         progress_percent = int((xp_progress / xp_range) * 100)
-    else:
-        progress_percent = 100
-
-    progress_percent = max(0, min(progress_percent, 100))
+        progress_percent = max(0, min(progress_percent, 100))
 
     return render(request, "myapp/profile.html", {
         "user": user,
@@ -96,8 +110,8 @@ def profile(request):
         "progress_percent": progress_percent,
         "level_number": level_number,
         "levels": levels,
+        "xp_color": xp_color,
     })
-
 
 
 # =========================
