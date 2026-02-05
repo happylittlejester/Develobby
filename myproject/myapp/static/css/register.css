@@ -3,10 +3,7 @@
   --purple: #402F96;
   --beige: #DFC39A;
   --white: #ffffff;
-
   --card-bg: rgba(32, 24, 75, 0.92);
-  --input-bg: rgba(255, 255, 255, 0.16);
-  --input-border: rgba(255, 255, 255, 0.08);
 }
 
 /* RESET */
@@ -14,7 +11,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: "Arial", sans-serif;
+  font-family: Arial, sans-serif;
 }
 
 html,
@@ -22,16 +19,15 @@ body {
   height: 100%;
 }
 
+/* ================== BODY LAYOUT ================== */
 body {
   color: var(--white);
-  background: transparent;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(#281E5E, #3D2D8B);
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* ================== NAVBAR ================== */
 .navbar-develobby {
   background-color: var(--dark-purple);
   padding: 12px 24px;
@@ -43,150 +39,95 @@ body {
   cursor: pointer;
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+/* ================== MAIN WRAPPER ================== */
 .auth-bg {
-  width: 100%;
+  flex: 1; /* 🔑 KLUCZ – wypycha stopkę */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 48px 16px;
-  position: relative;
-  overflow: hidden;
-  flex: 1;
-
-  background-image: url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background: url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png")
+    center / cover no-repeat;
+  padding: 40px 20px;
 }
 
-/* overlay */
-.auth-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(112, 74, 188, 0.08),
-    rgba(151, 83, 204, 0.08)
-  );
-  z-index: 1;
-}
-
-/* =========================
-   CARD
-========================= */
+/* ================== CARD ================== */
 .auth-card {
   width: 100%;
   max-width: 720px;
   background: var(--card-bg);
   border-radius: 18px;
   padding: 44px 48px;
-  box-shadow: 0 18px 70px rgba(0, 0, 0, 0.35);
-  position: relative;
-  z-index: 2;
 }
 
-/* =========================
-   TEXT
-========================= */
+/* ================== TITLE ================== */
 .auth-title {
   font-size: 2.3rem;
-  font-weight: 700;
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  font-weight: 700;
 }
 
 .auth-subtitle {
   text-align: center;
-  opacity: 0.85;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   font-size: 0.95rem;
 }
 
 .auth-subtitle a {
-  color: rgba(255, 255, 255, 0.92);
+  color: #ffffff;
   text-decoration: none;
   font-weight: 600;
-  margin-left: 6px;
 }
 
 .auth-subtitle a:hover {
   text-decoration: underline;
 }
 
-/* =========================
-   INPUTS
-========================= */
+/* ================== INPUTS ================== */
 .auth-input {
   width: 100%;
   height: 44px;
-  border-radius: 10px;
-  background: var(--input-bg);
-  border: 1px solid var(--input-border);
-  outline: none;
-  padding: 0 14px;
   margin-bottom: 14px;
-  color: var(--white);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.16);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 0 14px;
+  color: white;
 }
 
 .auth-input::placeholder {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255,255,255,0.75);
 }
 
-.auth-input:focus {
-  border: 1px solid rgba(223, 195, 154, 0.65);
-}
-
-/* =========================
-   ERRORS
-========================= */
+/* ================== ERRORS ================== */
 .form-error {
   color: #ffd1d1;
   font-size: 0.85rem;
   margin-bottom: 10px;
 }
 
-/* =========================
-   BUTTON
-========================= */
+/* ================== BUTTON ================== */
 .auth-btn {
   width: 100%;
-  border: none;
   background: var(--beige);
   color: var(--dark-purple);
-  font-weight: 700;
+  border: none;
   border-radius: 999px;
-  padding: 12px 18px;
-  margin-top: 10px;
-  transition: transform 0.15s ease, opacity 0.15s ease;
+  padding: 12px;
+  font-weight: 700;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .auth-btn:hover {
   opacity: 0.95;
-  transform: translateY(-1px);
 }
 
+/* ================== FOOTER ================== */
 .main-footer {
   background-color: #302371;
   color: #DFC39A;
-  text-align: left;
-  padding: 10px 30px;
-  font-size: 0.85rem;
-}
-
-/* =========================
-   MOBILE
-========================= */
-@media (max-width: 768px) {
-  .auth-card {
-    padding: 34px 22px;
-  }
-
-  .auth-title {
-    font-size: 1.9rem;
-  }
+  text-align: center;
+  padding: 14px 30px;
+  font-size: 14px;
 }
