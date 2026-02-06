@@ -70,9 +70,10 @@
 }
 
 .main-footer {
-    color: #DFC39A;
-    background-color: #302371;
-    text-align: left;
-    padding: 10px 30px;
-    margin-top: auto;
+  background-color: #302371;   
+  color: #DFC39A;              
+  text-align: center;
+  padding: 18px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
 }

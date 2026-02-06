@@ -309,9 +309,31 @@
 ========================= */
 
 .main-footer {
-  color: #DFC39A;
-  background-color: #302371;
-  text-align: left;
-  padding: 10px 30px;
-  margin-top: 40px;
+  background-color: #302371;   
+  color: #DFC39A;              
+  text-align: center;
+  padding: 18px 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.no-hobbies-message {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+.no-hobbies-message a {
+    color: #6ab0ff;
+    text-decoration: underline;
+}
+
+.info-section {
+    text-align: center;
+    padding: 40px 20px;
+    color: #ccc;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
 }

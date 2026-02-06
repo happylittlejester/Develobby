@@ -33,6 +33,13 @@
         <i class="bi bi-plus-lg"></i>
     </button>
 
+    {% if hobbies|length == 0 %}
+        <div class="no-hobbies-message">
+            <p>You don't have any hobbies yet. Click 
+                <a href="{% url 'hobby_panel' %}">here</a> to add one.</p>
+        </div>
+    {% endif %}
+
     {% for hobby in hobbies %}
     <button class="circle-btn"
             title="{{ hobby.detail.name }}"
@@ -47,6 +54,17 @@
     </button>
 
 </div>
+
+<br><br>
+
+<div class="info-section">
+    <h3>Welcome to your hobby panel!</h3>
+    <p>
+        Here you will see challenges and progress once you select a hobby.
+        Use the icons above to navigate between your hobbies.
+    </p>
+</div>
+
 <br><br><br><br>
 <footer class="main-footer">
   © 2025 Develobby. All rights reserved.
