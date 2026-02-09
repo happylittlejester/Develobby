@@ -104,16 +104,17 @@
 
     <section class="titles-grid">
       {% for lvl in levels %}
-        <div class="title-card {% if current_xp < lvl.xp_required %}locked-title{% endif %}">
+        <div class="title-card {% if lvl.xp_required > current_level.xp_required %}locked-title{% endif %}">
           <h4>{{ lvl.title }}</h4>
           <p>Reach {{ lvl.xp_required }} XP to get this title</p>
 
-          {% if current_xp < lvl.xp_required %}
+          {% if lvl.xp_required > current_level.xp_required %}
             <i class="bi bi-lock-fill lock-icon"></i>
           {% endif %}
         </div>
       {% endfor %}
     </section>
+
 
     <!-- PREMIUM -->
     <section class="premium-banner">

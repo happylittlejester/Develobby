@@ -85,32 +85,29 @@ def profile(request):
 
     levels = list(Level.objects.all().order_by("xp_required"))
 
-    current_level = None
+    current_level = stats.level if stats.level else levels[0]
     next_level = None
-    level_number = 0
+    level_number = 1
 
     for i, lvl in enumerate(levels):
-        if current_xp >= lvl.xp_required:
-            current_level = lvl
+        if lvl.id == current_level.id:
             level_number = i + 1
             if i + 1 < len(levels):
                 next_level = levels[i + 1]
+            break
 
     # =========================
-    # XP BAR (BEZPIECZNE)
+    # XP BAR
     # =========================
-    progress_percent = 100          # domyślnie pełny pasek
-    xp_color = "xp-high"             # jeden kolor (złoty)
+    progress_percent = 100
+    xp_color = "xp-high"
 
-    if current_level and next_level:
-        xp_range = next_level.xp_required - current_level.xp_required
+    if next_level:
+        xp_range = next_level.xp_required
 
         if xp_range > 0:
-            xp_progress = current_xp - current_level.xp_required
-            progress_percent = int((xp_progress / xp_range) * 100)
+            progress_percent = int((current_xp / xp_range) * 100)
             progress_percent = max(0, min(progress_percent, 100))
-        else:
-            progress_percent = 100
 
     return render(request, "myapp/profile.html", {
         "user": user,
@@ -123,6 +120,7 @@ def profile(request):
         "levels": levels,
         "xp_color": xp_color,
     })
+
 
 
 
@@ -430,15 +428,36 @@ def challenge_collect(request, challenge_id):
         uc.save()
 
         stats, _ = UserStats.objects.get_or_create(user=request.user)
+
+        # dodaj XP
         stats.xp_total += challenge.xp_reward
 
-        for lvl in Level.objects.all().order_by("xp_required"):
-            if stats.xp_total >= lvl.xp_required:
-                stats.level = lvl
+        levels = list(Level.objects.all().order_by("xp_required"))
+
+        # znajdź aktualny level
+        current_level_index = 0
+        if stats.level:
+            current_level_index = levels.index(stats.level)
+
+        # sprawdzaj level-up (może być kilka naraz)
+        while current_level_index + 1 < len(levels):
+            next_level = levels[current_level_index + 1]
+
+            if stats.xp_total >= next_level.xp_required:
+                stats.xp_total -= next_level.xp_required   # reset XP dla poziomu
+                stats.level = next_level
+                current_level_index += 1
+            else:
+                break
 
         stats.save()
 
     return redirect("hobby_detail", detail_id=challenge.hobby_detail.id)
+
+
+    return redirect("hobby_detail", detail_id=challenge.hobby_detail.id)
+
+
     
 
 
