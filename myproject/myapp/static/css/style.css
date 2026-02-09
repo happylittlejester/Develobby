@@ -175,6 +175,10 @@ section {
   align-items: center;
 }
 
+.faq-wrapper .small-btn {
+  margin-left: auto;
+}
+
 .footer-text {
   font-size: 1rem;
   font-weight: 500;
@@ -270,6 +274,21 @@ a {
   text-decoration: none !important;
 }
 
+.small-btn {
+  background: var(--beige);
+  color: var(--dark-purple);
+  border: none;
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+
+  text-decoration: none;   /* usuwa podkreślenie */
+  display: inline-flex;    /* zachowuje pozycję jak button */
+  align-items: center;
+  justify-content: center;
+}
 
 /* ================= RESPONSIVE ================= */
 
