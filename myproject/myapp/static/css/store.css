@@ -1,6 +1,11 @@
 body {
-    background: linear-gradient(#281E5E, #3D2D8B);
+    background-image: url("../img/ChatGPT_Image_29_lis_2025_17_41_00.png");
+    background-size: cover;        /* rozciąga na całą stronę */
+    background-position: center;   /* wyśrodkowanie */
+    background-repeat: no-repeat;  /* nie powtarza */
+    background-attachment: fixed;  /* opcjonalnie — efekt "parallax" */
 }
+
 
 .fi {
     font-size: 35px;
