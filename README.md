@@ -11,7 +11,7 @@
 
 ## 📖 About the Project
  
-**Develobby** is a web application for hobbyists that combines passion management with gamification mechanics. Users register, choose their hobbies, complete challenges, and earn experience points (XP) that translate into levels and unique unlockable titles. The app integrates with the National Bank of Poland API, offers a shop with hobby-related products.
+**Develobby** is a web application for hobbyists that combines passion management with gamification mechanics. Users register, choose their hobbies, complete challenges, and earn experience points (XP) that translate into levels and unique unlockable titles. The app integrates with the National Bank of Poland API, offers a shop with hobby-related products. It was a group project, where my main responsibilities included backend implementation, minor frontend support, and integrating the frontend with the backend.
 
 ---
 
