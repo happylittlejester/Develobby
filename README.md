@@ -1,7 +1,6 @@
-TEST 
 # 🎯 Develobby
 
-> A social platform for hobbyists built with Django — discover, manage, and grow your passions.
+> A social platform for hobbyists built with Django — discover, manage and grow your passions.
 
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-4.x-green?logo=django&logoColor=white)
@@ -12,7 +11,10 @@ TEST
 
 ## 📖 About the Project
  
-**Develobby** is a web application for hobbyists that combines passion management with gamification mechanics. Users register, choose their hobbies, complete challenges, and earn experience points (XP) that translate into levels and unique unlockable titles. The app integrates with the National Bank of Poland API, offers a shop with hobby-related products. It was a group project, where my main responsibilities included backend implementation, minor frontend support, and integrating the frontend with the backend.
+**Develobby** is a collaborative group project developed as a web application. Designed for hobbyists, it combines passion management with gamification mechanics. Users can register, choose their hobbies, complete challenges and earn experience points (XP) which contribute to leveling up and unlocking unique titles. By integrating with the National Bank of Poland API, it offers an early prototype of a shop with hobby-related products.
+
+### My Role
+I was responsible for backend development and project documentation.
 
 ---
 
@@ -32,7 +34,7 @@ The profile is the center of each user's progress. It displays:
  
 The main hub for managing passions. From this panel, users can:
  
-- **Add new hobbies** — assigning hobby to a profile
+- **Add new hobbies** — assign hobbies to their profile
 - **Remove hobbies** — drop passions they're no longer interested in
  
 ---
@@ -44,7 +46,7 @@ Every hobby has a set of **challenges** — specific tasks to complete within th
 - The user browses available challenges for their hobbies
 - After completing a challenge and marking it as done, they receive a **reward in the form of XP points**
 - Earned XP updates the hobby's progress (shown as a percentage) as well as the overall account level
-- Regularly completing challenges leads to levelling up and unlocking new titles
+- Regularly completing challenges leads to leveling up and unlocking new titles
  
 ---
  
@@ -53,8 +55,10 @@ Every hobby has a set of **challenges** — specific tasks to complete within th
 A built-in shop with tools and accessories related to hobbies. Key features:
  
 - **Browse by category** — products organized thematically, making it easy to find accessories suited to a specific passion
-- **Product cards** — each product presented with a description and price
-- **NBP API integration** — prices can be displayed and converted using live exchange rates fetched from the **National Bank of Poland API**, always providing up-to-date currency conversion (PLN ↔ EUR, USD, and more)
+- **Product cards** — each product is presented with a description and a price
+- **NBP API integration** — prices can be displayed and converted using live exchange rates fetched from the **National Bank of Poland API**, always providing up-to-date currency conversion (PLN ↔ EUR, USD and more)
+
+Purchasing is still in development and is not functional yet.
  
 ---
  
@@ -62,8 +66,10 @@ A built-in shop with tools and accessories related to hobbies. Key features:
  
 Users can upgrade their account to a premium plan, unlocking additional platform features. Key features:
 
-- **Premium Plan** — the upgrade page offers **3 plans at different price points**. Prices are displayed in your preferred currency and can be adjusted based on current exchange rates thanks to live exchange rates fetched from the **NBP API**.
- 
+- **Premium Plan** — the upgrade page offers **3 plans at different price points**. Prices are displayed in user's preferred currency and can be adjusted based on current exchange rates thanks to live exchange rates fetched from the **NBP API**.
+
+Purchasing is still in development and is not functional yet.
+
 ---
 
 ### 💱 NBP API Integration
@@ -121,7 +127,7 @@ The application connects to the public **National Bank of Poland API** (`api.nbp
 
 ---
 
-## 🚀 Installation & Setup
+## ⚙️ Installation & Setup
  
 ### Requirements
  
