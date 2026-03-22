@@ -13,8 +13,12 @@
  
 **Develobby** is a collaborative group project developed as a web application. Designed for hobbyists, it combines passion management with gamification mechanics. Users can register, choose their hobbies, complete challenges and earn experience points (XP) which contribute to leveling up and unlocking unique titles. By integrating with the National Bank of Poland API, it offers an early prototype of a shop with hobby-related products.
 
-### My Role
-I was responsible for backend development and project documentation.
+### 📌 My Role
+I was responsible for project documentation and backend development, including:
+- Designing and creating the database
+- Building backend logic for site sections (Store, Upgrade, My Hobbies, Coming Soon)
+- Integrating external API and implementing the functionality it provides
+- Connecting the frontend HTML with backend logic
 
 ---
 
